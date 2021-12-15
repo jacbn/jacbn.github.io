@@ -1,5 +1,3 @@
-# the only source really was https://mathlesstraveled.com/2016/06/10/apollonian-gaskets-and-descartes-theorem-ii/, which gave all the relevent formulae (then wasted it all implementing it in C++...)
-
 import turtle as t, math, itertools, time, tkinter as tk, numpy as np
 s = t.Screen()
 t.speed(3)
@@ -32,7 +30,7 @@ def makeCircle(radius, centre=(0,0), n=[]):
     
 
 def getPosition(r1, pos1, r2, pos2, r3, pos3, reverse=False):
-    """Using a "remarkable theorem" I can't even try to explain (see http://arxiv.org/pdf/math/0101066v1.pdf), we can calculate the position of the circle bounded by 3 others."""
+    """Using http://arxiv.org/pdf/math/0101066v1.pdf, we can calculate the position of the circle bounded by 3 others."""
     if r1 > 5-DETAIL and r2 > 5-DETAIL and r3 > 5-DETAIL:
         if r1 == 360: r1 = -360
         if r2 == 360: r2 = -360
@@ -47,7 +45,6 @@ def getPosition(r1, pos1, r2, pos2, r3, pos3, reverse=False):
         p4pos = (2*np.sqrt(c1*p1*(c2*p2 + c3*p3) + c2*p2*c3*p3) + c1*p1 + c2*p2 + c3*p3)/c4
         p4neg = (-2*np.sqrt(c1*p1*(c2*p2 + c3*p3) + c2*p2*c3*p3) + c1*p1 + c2*p2 + c3*p3)/c4
 
-        #p4 = p4pos if abs(p4pos) > abs(p4neg) else p4neg
         if reverse:
             p4 = p4pos if p4pos.real * p4pos.real + p4pos.imag * p4pos.imag < p4neg.real * p4neg.real + p4neg.imag * p4neg.imag else p4neg
         else:
@@ -63,7 +60,6 @@ def calcRadius(r1,r2,r3, reverse):
     a,b,c = (1/r1) if r1 != 360 else (-1/r1), 1/r2, 1/r3
     global offsetBiggestCircleFound
     if reverse and not offsetBiggestCircleFound:
-        #print(sum(sorted([i[0] for i in list(circles.keys()) if abs(i[0]) != 360])[:1]))
         if sum(sorted([i[0] for i in list(circles.keys()) if abs(i[0]) != 360])[:1]) > 180:
             
             offsetBiggestCircleFound = True
@@ -85,9 +81,7 @@ def genQuart(i):
         m = np.tan(math.radians(circleOrient.get())) #this should be +45 more than the +315 used below - hence, +360, so nothing.
         mm = m*m
         det = 1/(1+mm)
-        #doing this makes all calculations near instant up to the 5th generation
         makeCircle(r, (det*(c[0]*(1-mm) + c[1]*2*m), det*(c[0]*2*m + c[1] * (mm-1))))
-        #makeCircle(r, (c[0], -c[1]))
     else:
         if not offsetBiggestCircleFound:
             r, c = getPosition(*i[0], *i[1], *i[2], True)
@@ -103,7 +97,6 @@ def nextIteration():
             l = list(set(circles[i]).intersection(set(circles[j])))
             if i in l:
                 l.remove(i)
-
             for k in range(len(l)):
                 m = l[k]
                 if sum([1 for each in queue if each in [(i,j,m),(i,m,j),(j,i,m),(j,m,i),(m,j,i),(m,i,j)]]) == 0:
@@ -123,9 +116,6 @@ def changeStartSettings(event=None):
     circles.clear()
     negatives.clear()
     queue.clear()
-##    makeCircle(360, (0,0),     [(a, (a-360,0)),   (b, (a,0))])
-##    makeCircle(a, (a-360,0),  [(360, (0,0)),   (b, (a,0))])
-##    makeCircle(b, (a,0),   [(360, (0,0)),    (a, (a-360,0))])
     x = np.cos(math.radians(circleOrient.get()+315))/np.sqrt(2) - np.sin(math.radians(circleOrient.get()+315))/np.sqrt(2)
     y = np.sin(math.radians(circleOrient.get()+315))/np.sqrt(2) + np.cos(math.radians(circleOrient.get()+315))/np.sqrt(2)
     
@@ -150,7 +140,6 @@ def changeStartConditions(event=None):
 
     x = ((r2+r3)**2 - (r1-r3)**2 - (r1-r2)**2)
     x /= 2*(r1-r2)
-    #print(x, ((r2+r3)**2 - (r1-r3)**2 - (r1-r2)**2),2*(r1-r2))
     y = ((r1-r3)**2 - x**2)**0.5
 
     
