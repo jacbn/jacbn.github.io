@@ -1,0 +1,41 @@
+html,
+
+.h4noBMargin {
+    display: block; 
+    margin-top: 1.33em; 
+    margin-left: 0; 
+    margin-right: 0; 
+    font-weight: bold;
+    text-align: center;
+}
+
+.slider {
+    width: 120px;
+}
+
+.longSlider {
+    width: 160px;
+}
+
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+}
+
+.widthContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content:center;
+}
+
+.canvasAndOptions {
+    max-width: min-content
+    
+}
+
+.nomargin {
+    margin-top: 1.33em; 
+    margin-left: 0; 
+    margin-right: 0; 
+}

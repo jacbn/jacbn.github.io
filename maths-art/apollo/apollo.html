@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+    <head>
+        <title>Apollonian Gaskets</title>
+        
+        <link rel="stylesheet" href="./../mathstyles.css">
+        <link rel="stylesheet" href="./../../styles.css">
+        
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+    </head>
+
+    <body> 
+        <nav class="sticky">
+            <div class="myname">
+                Jacob Brown
+            </div>
+            <div>
+                <a href="../../contact.htm">Contact</a> 
+                <a href="../../about.htm">About Me</a> 
+                <a href="../../main.htm">Home</a>
+            </div>
+        </nav>
+        <div class="widthContainer">
+            <div>
+                <div class="centred subtitle">
+                    Apollonian Gaskets
+                </div>
+                <div class="pureText">
+                    <h4>What are Apollonian Gaskets?</h4>
+                    <p> An Apollonian Gasket is a circular fractal generated from a triad of "kissing" circles (a pair of circles are kissing if they are tangential in exactly one place; a triad of circles are kissing if each circle is once tangential to each other circle in the triad). An Apollonian Gasket is formed by iteratively constructing more kissing circles.</p>
+                    <h4>Are there always more kissing circles?</h4>
+                    <p>Yes! This was proven by Descartes in his famous <a href="https://en.wikipedia.org/wiki/Descartes%27_theorem">theorem</a>. This also defines a quadratic equation linking the curvatures of the four circles, so given three it is possible to find the fourth.</p>
+                    <h4>What about the positions of these circles?</h4>
+                    <p>In 2001, a <a href="https://arxiv.org/pdf/math/0101066v1.pdf">paper</a> was published showing the relationship between Descartes' Theorem and complex numbers. The paper goes on to prove relationships spheres and even generalises to n dimensions, but for our purposes we need only the 2D case. It is proven that Descartes' Theorem holds not only for curvatures, but also for circle centres (as a complex number) multiplied by their curvatures. Therefore, using both the original Descartes' Theorem and the complex extension, we can calculate the centres.</p>
+                    <h4>I'm getting some graphical glitches when adjusting the sliders.</h4>
+                    <p>Yeah, I've made some shortcuts in both the math and in coding to make it run quick enough to update in real-time on most browsers. Some of the glitches are related to this, some I'm not actually sure of; there seems to be some issue with points very close to the origin I can't seem to decipher. Do let me know if you can figure it out!</p>
+
+                </div>
+            </div>
+            <div class="canvasAndOptions">
+                <div>
+                    <canvas class="centred nomargin" id="mainCanvas" width="520" height="520"></canvas> <!--style="border:1px solid"-->
+                    <script type="module" src="apollo.js"></script>
+                </div>
+        
+                <div class="flexContainer">
+                    <div>
+                        <div class="h4noBMargin"> Circle Ratio</div>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="ratioSlider">
+                    </div>
+                    <div>
+                        <div class="h4noBMargin">Offset</div>
+                        <input type="range" min="0" max="180" value="0" class="slider" id="offsetSlider">
+                    </div>
+                    <div>
+                        <div class="h4noBMargin">Rotation</div>
+                        <input type="range" min="0" max="359" value="0" class="slider" id="rotationSlider">
+                    </div>
+                    <div>
+                        <div class="h4noBMargin">Iterations</div>
+                        <input type="range" min="0" max="9" value="6" class="slider" id="iterationSlider">
+                    </div>
+                </div>
+                <div class="pureText">
+                    You can download the raw Python file <a href="./ApollonianGasket.py">here</a>, or see the JavaScript version through your browser.
+                </div>
+            </div>
+        </div>
+        
+        
+        
+       
+    </body>
+
+</html>

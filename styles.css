@@ -1,0 +1,157 @@
+html,
+
+body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #212527;
+    color: #f5f5f5;
+    display:grid;
+    grid-template-rows: max-content min-content auto auto;
+    font-family: "Quicksand";
+    font-weight: normal;
+}
+
+header {
+    padding: 10px;
+    text-align: center;
+    background-color: #111314;
+    position: relative;
+}
+
+header .main {
+    padding: 30px;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+.title {
+    font-family: "Quicksand";
+    font-size: 4em;
+    line-height: 0.3;
+}
+
+.front {
+    position: relative;
+    z-index: 2;
+}
+
+.behind {
+    position: absolute;
+    z-index: 1;
+    width:100%;
+    color:#a0a0a0;
+}
+
+a {
+    color: inherit;
+}
+
+nav {
+    background-color: #191c20;
+    transition: top 0.3s;
+    z-index: 99;
+}
+
+nav a {
+    float: right;
+    color:#a0a0a0;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+footer {
+    text-align: right;
+    color: #353535;
+    padding: 10px;
+}
+
+.myname {
+    float:left;
+    text-align:center;
+    font-size: 34px;
+}
+
+.activeNav {
+    background-color: #23282c;
+}
+
+nav a:hover {
+    background-color: #394146;
+}
+
+.icon {
+    width:20px;
+    height:20px;
+}
+
+.centred {
+    text-align:center;
+}
+
+.subtitle {
+    font-size: 25pt;
+    margin: 20px 40px;
+}
+
+.hiddenContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 80%;
+    border: none;
+    font-family: "Quicksand";
+    font-size: 20px;
+    text-align: center;
+    outline: none;
+    border-radius: 10px;
+}
+
+.active, .collapsible:hover {
+    background-color: #555;
+}
+
+.collapsible:after {
+    content: '+';
+    color: white;
+    font-weight: bold;
+    float: right;
+}
+
+.active:after {
+    content: "\2212"; /* full length -- */
+}
+
+.content {
+    /*padding: 10px 0px;*/
+    text-align: left;
+    font-size: 12pt;
+    width: 80%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.1s ease-out;
+    background-color: #353535;
+    border-radius: 0 0 10px 10px;
+}
+
+.pureText {
+    font-size: 12pt;
+    margin: 20px 40px;
+}
+
+.textwmargin {
+    margin: 20px 40px 40px;
+}

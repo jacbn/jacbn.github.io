@@ -1,0 +1,92 @@
+<html lang="en-GB">
+    <head>
+        <title>Jacob Brown</title>
+        
+        <link rel="stylesheet" href="styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
+        <script type="text/javascript" src="main.js" defer></script>
+        
+    </head>
+
+
+    <body>
+        <header class="main">
+            <div class="title">
+                <h1>
+                    <div class="front">
+                        Jacob
+                    </div>
+                    <div class="behind">
+                        <br>&nbsp;&nbsp;&nbsp;Brown
+                    </div>
+                    <br><br><br>
+                </h1>
+            </div>
+        </header>
+
+        <nav class="sticky">
+            <div>
+                <a href="./contact.htm">Contact</a> 
+                <a href="./about.htm">About Me</a> 
+                <a class="activeNav" href="./main.htm">Home</a>
+            </div>
+        </nav>
+
+        <main>
+            <div class="centred subtitle">
+                My Projects:
+            </div>
+            <div class="centred hiddenContent">
+                <button class="collapsible">OCaml: <b>Front End of a Compiler</b></button>
+                <div class="content">
+                    <div class="textwmargin">
+                        I wrote the lexer and parser for an LR(0) compiler in OCaml, as a way of consolidating some prerequisite reading we were required to do for a compilers course taken in our second year. I chose OCaml for a few reasons: firstly because its functional nature makes the lexer fairly intuitive, akin to a state machine, secondly because I wondered how far I could take a stateless compiler, and lastly as practice for a language I enjoyed writing in but never got the chance to do a larger project with. <br><br>
+                        During the process, I learned a lot from implementing the finer details missed out in books. Most of the important implementation details could be found in Compilers: Principles, Techniques and Tools (Aho, Lam, Sethi & Ullman), though all code there is presented in an imperative format; converting this to a functional implementation while maintaining statelessness was a challenge. <br><br>
+                        I had hoped to finish an LALR(1) equivalent by the end of the summer break, but uni work took priority -- I'm hoping to have it finished soon after Michaelmas term ends. This version allows the compiler to understand postfix operations, making it usable for most modern programming languages. <br><br>
+                        You can find the raw ML for the LR(0) version <a href="./files/lr0-lexer-parser.ml">here</a>.
+                    </div>
+                </div>
+            </div>
+
+            <div class="centred hiddenContent">
+                <button class="collapsible">Python: <b>Pandemic Simulation & Real World Data Analysis</b></button>
+                <div class="content">
+                    <div class="textwmargin">
+                        Over the winter break of 2020 I undertook a two-part project looking into the spread of a pandemic through a population. The first part of the project involved simulating the spread of a pandemic with tunable parameters through a population split into household bubbles. Such parameters included the probability of infecting both another person in the same bubble as well as in a different one, the average number of days taken to recover, and the average household bubble size. By fitting the infectivity and recovery parameters with what we know about COVID-19, for example, it is possible to determine the bubble size required to reduce the R-value to under 1.  <!--!is r-value the right name-->
+                        <br><br>
+                        The second part of the project involved using real-world data to model the effectiveness of government measures across the world. 
+                        The dataset used was obtained from researchers from the John Hopkins University, and contained the number of new infections and recoveries each day. I looked at how different measures, such as the introduction of mandatory face masks and local and national lockdowns affected the R-value by plotting a <!--!WHAT IS THE GRAPH CALLED--> 
+                        showing the change in R over time. You can preview some of the results here:
+                        <!--!ADD RESULTS-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="centred hiddenContent">
+                <button class="collapsible">C#: <b>Hexad</b></button>
+                <div class="content">
+                    <div class="textwmargin">
+                        Hexad is a mobile game I developed and released back in 2019, designed with Unity. The project taught me a lot about the lifecycle of a project, from coming up with the idea, to implementing it, to dealing with the administrative side of releasing an app. 
+                    </div>
+                </div>
+            </div>
+
+            <div class="centred hiddenContent">
+                <button class="collapsible">Python & JS: <b>Maths Art</b></button>
+                <div class="content">
+                    <div class="textwmargin">
+                        To practice math modules in Python (mainly NumPy and Matplotlib), I've made several projects relating to making art using maths. I've ported two of my favourites to JavaScript so you can see a live preview; there's <a href="./maths-art/apollo/apollo.htm">Apollonian Gaskets</a> and an iterative creation of the <a href="./maths-art/lotfollah/lotfollah.htm">Lotfollah Mosque's Dome pattern</a>. You can also find the Python files at the respective links.
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <footer>
+            :)
+        </footer>
+    </body>
+
+</html>
