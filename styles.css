@@ -9,7 +9,7 @@ body {
     background-color: #212527;
     color: #f5f5f5;
     display:grid;
-    grid-template-rows: max-content min-content auto auto;
+    grid-template-rows: max-content min-content auto;
     font-family: "Quicksand";
     font-weight: normal;
 }
@@ -64,11 +64,23 @@ nav a {
     padding: 14px 16px;
 }
 
-footer {
+/*footer {
+    position: absolute;
     text-align: right;
     color: #353535;
-    padding: 10px;
+    width: 100%;
+    bottom: 0;
+    height:2.5rem;
 }
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+  
+#content-wrap {
+    padding-bottom: 2.5rem;
+}*/
 
 .myname {
     float:left;
@@ -85,8 +97,13 @@ nav a:hover {
 }
 
 .icon {
-    width:20px;
-    height:20px;
+    width:40px;
+    height:40px;
+}
+
+.iconContainer {
+    text-decoration: none;
+    padding:10px;
 }
 
 .centred {
@@ -154,4 +171,42 @@ nav a:hover {
 
 .textwmargin {
     margin: 20px 40px 40px;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+  
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 180px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -90px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+  
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+  
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
