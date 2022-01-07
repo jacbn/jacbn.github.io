@@ -44,8 +44,8 @@
                 <div class="content">
                     <div class="textwmargin">
                         I wrote the lexer and parser for an LR(0) compiler in OCaml, as a way of consolidating some prerequisite reading we were required to do for a compilers course taken in our second year. I chose OCaml for a few reasons: firstly because its functional nature makes the lexer fairly intuitive, akin to a state machine, secondly because I wondered how far I could take a stateless compiler, and lastly as practice for a language I enjoyed writing in but never got the chance to do a larger project with. <br><br>
-                        During the process, I learned a lot from implementing the finer details missed out in books. Most of the important implementation details could be found in Compilers: Principles, Techniques and Tools (Aho, Lam, Sethi & Ullman), though all code there is presented in an imperative format; converting this to a functional implementation while maintaining statelessness was a challenge. <br><br>
-                        I had hoped to finish an LALR(1) equivalent by the end of the summer break, but uni work took priority -- I'm hoping to have it finished soon after Michaelmas term ends. This version allows the compiler to understand postfix operations, making it usable for most modern programming languages. <br><br>
+                        During the process, I learned a lot from implementing the finer details missed out in books. Most of the important implementation details could be found in <i>Compilers: Principles, Techniques and Tools (Aho, Lam, Sethi & Ullman)</i>, though all code there is presented in an imperative format; converting this to a functional implementation while maintaining statelessness was a challenge. <br><br>
+                        I had hoped to finish an LALR(1) equivalent by the end of the holidays, but uni work has taken priority -- I'm hoping to have it finished soon, however. This version would allow the compiler to understand postfix operations, making it usable for most modern programming languages. <br><br>
                         You can find the raw ML for the LR(0) version <a href="./files/lr0-lexer-parser.ml">here</a>.
                     </div>
                 </div>
@@ -64,10 +64,21 @@
             </div>
 
             <div class="centred hiddenContent">
+                <button class="collapsible">Java: <b>Sentiment Analysis</b></button>
+                <div class="content">
+                    <div class="textwmargin">
+                        As part of an introduction to NLP, I worked on a project relating to multiple different methods of sentiment analysis to determine which is the most accurate. This began with a simple lexical map of certain keywords which indicate sentiment directly ('good', 'bad', 'enjoyed', 'hated', etc.) which were used to calculate a sentiment score, but I quickly discovered this was a flawed method as the reviewer could be describing a small section of the movie, or use inverting phrases such as 'not bad', which flip the sentiment. I also needed to consider the strength of the words used ('bad' versus 'awful' for example), and the fact that this sentiment map had to be hand-made; it became apparent that a sentiment map was a poor choice and moving to machine learning was a better approach.
+                        <br><br>
+                        As such, I developed a training routine to perform the creation of a similar lexical map. By assuming feature independence it is possible to create a naïve Bayes classifier, which uses a set of training data to build a lexical map as before (but only requires the sentiment of each <i>review</i>, rather than each word -- this can even be done using the author's "star rating" that is usually given alongside a review, rather than manually assigned). The sentiment of a given review is then the max over each sentiment of the product of the probabilities of each word appearing in a review of that sentiment (argmax_s ∏_i s[word_i]) (in practice, I logged each probability to prevent underflow and gave words new to the classifier a small baseline probability of appearing to prevent the system giving 0 probability). 
+                    </div>
+                </div>
+            </div>
+
+            <div class="centred hiddenContent">
                 <button class="collapsible">C#: <b>Hexad</b></button>
                 <div class="content">
                     <div class="textwmargin">
-                        Hexad is a mobile game I developed and released back in 2019, designed with Unity. The project taught me a lot about the lifecycle of a project, from coming up with the idea, to implementing it, to dealing with the administrative side of releasing an app. 
+                        Hexad is a mobile game I developed and released from 2018-2019, designed with Unity. The project taught me a lot about the lifecycle of a project, from coming up with the idea, to implementing it, to dealing with the administrative side of releasing an app. 
                     </div>
                 </div>
             </div>
