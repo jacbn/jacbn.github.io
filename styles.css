@@ -121,6 +121,7 @@ nav a:hover {
     align-items: center;
     flex-direction: column;
     margin: 20px;
+    min-width: 50em;
 }
 
 .collapsible {
@@ -135,6 +136,7 @@ nav a:hover {
     text-align: center;
     outline: none;
     border-radius: 10px;
+    min-width: 30em;
 }
 
 .active, .collapsible:hover {
