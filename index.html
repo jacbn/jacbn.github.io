@@ -40,12 +40,25 @@
                 My Projects:
             </div>
             <div class="centred hiddenContent">
+                <button class="collapsible">Dart: <b>Green Maps</b></button>
+                <div class="content">
+                    <div class="textwmargin">
+                        As part of a second-year project, we had a series of external companies come in with a prompt, to which a group of 5 or 6 work together over the course of a term to produce a product satisfying the requirements set out in the prompt. Our group worked with <a href="https://www.imc.com/">IMC</a> to produce a maps app with a focus on carbon emissions. Users could plot their journeys by entering a start and end location, for which a number of different routes are calculated. The carbon emissions of each route is then calculated as accurately as possible -- for example in a car, the app would take into account the make of car used, the average speed along each road used, the type of fuel used and more. To make this process streamlined, each user can enter their car's information once when they first download the app then reuse that profile, or indeed enter multiple car profiles over time.
+                        <br><br>
+                        Regarding team structure, we split the project into 3 groups: front-end, back-end API, and carbon calculator. I worked mostly on the front-end, designing a number of screens within the app and dealing with calls to external APIs such as Google's place autocomplete or Geolocation; I also, however, worked with the back-end team to manage the integration with the cloud-based API.
+                        <br><br>
+                        In all, the project was a huge success -- of the 20 groups participating, we won one of three awards, "Most Professional Achievement". We were also invited to IMC's office in Amsterdam to meet the team we had been working with. I found the opportunity to work together on an extended project to be very enjoyable and the experience taught me a lot about expected standards in industry and how to work effectively as a team.
+                    </div>
+                </div>
+            </div>
+
+            <div class="centred hiddenContent">
                 <button class="collapsible">OCaml: <b>Front End of a Compiler</b></button>
                 <div class="content">
                     <div class="textwmargin">
                         I wrote the lexer and parser for an LR(0) compiler in OCaml, as a way of consolidating some prerequisite reading we were required to do for a compilers course taken in our second year. I chose OCaml for a few reasons: firstly because its functional nature makes the lexer fairly intuitive, akin to a state machine, secondly because I wondered how far I could take a stateless compiler, and lastly as practice for a language I enjoyed writing in but never got the chance to do a larger project with. <br><br>
                         During the process, I learned a lot from implementing the finer details missed out in books. Most of the important implementation details could be found in <i>Compilers: Principles, Techniques and Tools (Aho, Lam, Sethi & Ullman)</i>, though all code there is presented in an imperative format; converting this to a functional implementation while maintaining statelessness was a challenge. <br><br>
-                        I had hoped to finish an LALR(1) equivalent by the end of the holidays, but uni work has taken priority -- I'm hoping to have it finished soon, however. This version would allow the compiler to understand postfix operations, making it usable for most modern programming languages. <br><br>
+                        I also wrote the majority of an LALR(1) equivalent (allowing the compiler to understand postfix operations, making it usable for most modern programming languages) which I had hoped to finish by the end of the holidays that year, but uni work took priority and I had to put it on hold -- I'd love to revisit it soon though! <br><br>
                         You can view the raw ML for the LR(0) version <a href="https://github.com/jacbn/ml-compilers">here</a>.
                     </div>
                 </div>
@@ -87,12 +100,14 @@
                 <button class="collapsible">Python & JS: <b>Maths Art</b></button>
                 <div class="content">
                     <div class="textwmargin">
-                        To practice math modules in Python (mainly NumPy and Matplotlib), I've made several projects relating to making art using maths. I've ported two of my favourites to JavaScript so you can see a live preview; there's <a href="./maths-art/apollo/apollo.html">Apollonian Gaskets</a> and an iterative creation of the <a href="./maths-art/lotfollah/lotfollah.html">Lotfollah Mosque's Dome pattern</a>. You can also find the Python files at the respective links.
+                        To practice math modules in Python (mainly NumPy and Matplotlib), I've made several projects relating to making art using maths. I've ported two of my favourites to JavaScript so you can see a live preview; there's <a href="./maths-art/apollo/apollo.html">Apollonian Gaskets</a> and an iterative creation of the <a href="./maths-art/lotfollah/lotfollah.html">Lotfollah Mosque's Dome pattern</a>. You can also find the Python files at the respective links.<br>
                     </div>
                 </div>
             </div>
 
         </main>
+
+        <footer></footer>
     </body>
 
 </html>
