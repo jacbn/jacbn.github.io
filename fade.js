@@ -1,6 +1,6 @@
 
-FADE_IN_TIME = 200;
-FADE_OUT_TIME = 200;
+FADE_IN_TIME = 150;
+FADE_OUT_TIME = 150;
 
 $("body").css("display", "none");
 $(document).ready(function() {

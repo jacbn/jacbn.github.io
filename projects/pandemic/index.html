@@ -2,25 +2,28 @@
     <head>
         <title>Pandemic Simulation & Analysis</title>
         
-        <link rel="stylesheet" href="../styles.css">
-        <link rel="stylesheet" href="../files/datasci/datastyles.css">
-        
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../../files/pandemic/datastyles.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </head>
 
     <body> 
         <nav class="sticky">
-            <div class="myname">
-                Jacob Brown
+            <div class="myname transition" href='../../'>
+                Jacob <span style="color:#a0a0a0;">Brown</span>
             </div>
             <div>
-                <a href="../../contact.html">Contact</a> 
-                <a href="../../about.html">About Me</a> 
-                <a href="../../">Home</a>
+                <div href="../../contact.html" class="a-fade transition">Contact</div> 
+                <div href="../../about.html" class="a-fade transition">About Me</div> 
+                <div href="../../" class="a-fade transition">Home</div>
             </div>
         </nav>
         <main>
             <div class="centred subtitle">Pandemic Simulation & Real-World Data Analysis</div> 
+            <div class="square project-page-icon" style="background-color: lightblue;">
+                <img class="square iconContainer" src="../../files/index/logo-pandemic.svg" alt="A leaf on a wheat background, the logo of the Green Maps project.">
+            </div>
             <div class="pureText">
                 <h3>Simulation</h3>
                 <p>The first part of the project involved simulating the spread of an infection through a population. This is done by assigning the population randomly into households at the start of the simulation (with tuneable sizes), then maintaining two probabilities -- that of transmission within the household, and that of transmission between households. Simulation involves applying these probabilities to each infected person each day. </p>
@@ -39,15 +42,16 @@
                 <p>A clear example is the first lockdown/reopen in the UK. We can see that initially the R-value was far above 3, and immediately after the lockdown came into effect (March 23rd, 2020) the R-value began to drop significantly, and the number of new infections (i.e. the x-gap between points) slowed. Eventually, the R-value broke below 1 and the number of infected decreased. However, almost immediately after the reopening, this pivoted into a loop and infections jumped and the R-value increased above 1 (unfortunately, some of the data was incorrect for the UK during the following period so the R-value appears to drop far below 0 -- it picks back up again on the left side a few weeks later).</p>
 
 
-                <h2>Figure 1: Simulated infection over time in a population of 100,000.</h2>
-                <img class="datasciIm" src="../files/datasci/Figure_2.png">
-                <h2>Figure 2: Infections & Deaths over time for the UK, 2020-01-22 to 2020-12-12 </h2>
-                <img class="datasciIm" src="../files/datasci/Figure_4.png">
-                <h2>Figure 3: Phase-space plot of R-value against number of people infected (4 countries)</h2>
-                <img class="datasciIm" src="../files/datasci/Figure_5.png">
+                <h2 class="centred" style="margin-top: 3%;">Figure 1: Simulated infection over time in a population of 100,000.</h2>
+                <img class="pandemicIm" src="../../files/pandemic/Figure_2.png">
+                <h2 class="centred">Figure 2: Infections & Deaths over time for the UK, 2020-01-22 to 2020-12-12 </h2>
+                <img class="pandemicIm" src="../../files/pandemic/Figure_4.png">
+                <h2 class="centred">Figure 3: Phase-space plot of R-value against number of people infected (4 countries)</h2>
+                <img class="pandemicIm" src="../../files/pandemic/Figure_5.png">
             </div>
 
 
         </main>
     </body>
+    <script type="text/javascript" src="../../fade.js"></script>
 </html>

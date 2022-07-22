@@ -61,11 +61,20 @@ nav {
     z-index: 99;
 }
 
-nav a {
+nav .a-fade {
     float: right;
     color:#a0a0a0;
     text-align: center;
     padding: 14px 16px;
+    cursor: pointer;
+}
+
+nav .a-fade:hover {
+    background-color: #394146;
+}
+
+.activeNav {
+    background-color: #23282c;
 }
 
 footer {
@@ -78,16 +87,6 @@ footer {
     padding-bottom: 20px;
 }
 
-/*
-#page-container {
-    position: relative;
-    min-height: 100vh;
-}
-  
-#content-wrap {
-    padding-bottom: 2.5rem;
-}*/
-
 .myname {
     float:left;
     text-align:center;
@@ -95,13 +94,6 @@ footer {
     cursor: pointer;
 }
 
-.activeNav {
-    background-color: #23282c;
-}
-
-nav a:hover {
-    background-color: #394146;
-}
 
 .icon {
     width:40px;
@@ -110,7 +102,7 @@ nav a:hover {
 
 .iconContainer {
     text-decoration: none;
-    padding:10px;
+    padding:1%;
 }
 
 .centred {
@@ -128,6 +120,7 @@ nav a:hover {
     gap: 5%;
     row-gap: 10%;
     padding: 2% 5% 10%;
+    list-style: none;
     /* padding: 0; */
 }
 
@@ -250,4 +243,16 @@ nav a:hover {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+.filter-white {
+    filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(6deg) brightness(107%) contrast(108%);
+}
+
+.project-page-icon {
+    float: right;
+    width: 280px;
+    padding: 30px;
+    margin: 0 4% 20px 20px;
+    border-radius: 50px;
 }
