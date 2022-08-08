@@ -256,3 +256,21 @@ footer {
     margin: 0 4% 20px 20px;
     border-radius: 50px;
 }
+
+.entry-field {
+    margin: 1%;
+    width: 40%;
+    height: 150px;
+    text-align: start;
+    background-color: #111314;
+    color: white;
+}
+
+.centredImage {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin:auto;
+}

@@ -2,7 +2,7 @@ html,
 
 .h4noBMargin {
     display: block; 
-    margin-top: 1.33em; 
+    /*margin-top: 1.33em; */
     margin-left: 0; 
     margin-right: 0; 
     font-weight: bold;
@@ -38,4 +38,17 @@ html,
     margin-top: 1.33em; 
     margin-left: 0; 
     margin-right: 0; 
+}
+
+.leftHalf {
+    margin: 2% 2% 2% 12%;
+    left: 0%;
+    transform: none;
+}
+
+.rightHalf {
+    margin: 2% 12% 2% 2%;
+    left: 0%;
+    transform: none;
+    float: right;
 }

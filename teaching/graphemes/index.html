@@ -1,0 +1,39 @@
+<html lang="en-GB">
+    <head>
+        <title>Grapheme Splitter</title>
+        
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../teachingStyles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="./phases.js"></script>
+        <script src="./graphemes.js" defer></script>
+        <script src="./ui.js" defer></script>
+    </head>
+
+    <body> 
+        <nav class="sticky">
+            <div class="myname transition" href='../../'>
+                Jacob <span style="color:#a0a0a0;">Brown</span>
+            </div>
+            <div>
+                <div href="../../contact.html" class="a-fade transition">Contact</div> 
+                <div href="../../about.html" class="a-fade transition">About Me</div> 
+                <div href="../../" class="a-fade transition">Home</div>
+            </div>
+        </nav>
+        <main> 
+            <div class="centred">
+                <div class="subtitle">Grapheme Splitter</div>
+                <p>This tool allows you to colour a word by its component graphemes. Simply type the text you want to colour into the box below and set which options you want!</p>
+                <textarea class="entry-field" type="text" id="main-entry" placeholder="Enter text here..."></textarea>
+                <br>
+                <div class="teaching-flashcard" id="card1">
+                    <div class="teaching-flashcard-top" style="background-color:deepskyblue"></div>
+                    <div id="output" class="output-text"></div>
+                </div>
+            </div>
+        </main>
+    </body>
+    <script type="text/javascript" src="../../fade.js"></script>
+</html>
