@@ -7,7 +7,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
         <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet"> 
-        <script type="text/javascript" src="main.js" defer></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script type="text/javascript" src="main_defer.js" defer></script>
         
     </head>
 
@@ -22,16 +23,17 @@
                     <div class="behind">
                         <br>&nbsp;&nbsp;&nbsp;Brown
                     </div>
-                    <br><br><br>
+                    <br><br><!--<br>-->
                 </h1>
+                <p style="font-size:15px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(website under construction - excuse the mess!)</p>
             </div>
         </header>
 
         <nav class="sticky">
             <div>
-                <a href="./contact.html">Contact</a> 
-                <a href="./about.html">About Me</a> 
-                <a class="activeNav" href="./">Home</a>
+                <div href="./contact.html" class="a-fade transition" >Contact</div> 
+                <div href="./about.html" class="a-fade transition" >About Me</div> 
+                <div href="./" class="activeNav a-fade transition">Home</div>
             </div>
         </nav>
 
@@ -39,75 +41,127 @@
             <div class="centred subtitle">
                 My Projects:
             </div>
-            <div class="centred hiddenContent">
-                <button class="collapsible">Dart: <b>Green Maps</b></button>
-                <div class="content">
-                    <div class="textwmargin">
-                        As part of a second-year project, we had a series of external companies come in with a prompt, to which a group of 5 or 6 work together over the course of a term to produce a product satisfying the requirements set out in the prompt. Our group worked with <a href="https://www.imc.com/">IMC</a> to produce a maps app with a focus on carbon emissions. Users could plot their journeys by entering a start and end location, for which a number of different routes are calculated. The carbon emissions of each route is then calculated as accurately as possible -- for example in a car, the app would take into account the make of car used, the average speed along each road used, the type of fuel used and more. To make this process streamlined, each user can enter their car's information once when they first download the app then reuse that profile, or indeed enter multiple car profiles over time.
-                        <br><br>
-                        Regarding team structure, we split the project into 3 groups: front-end, back-end API, and carbon calculator. I worked mostly on the front-end, designing a number of screens within the app and dealing with calls to external APIs such as Google's place autocomplete or Geolocation; I also, however, worked with the back-end team to manage the integration with the cloud-based API.
-                        <br><br>
-                        In all, the project was a huge success -- of the 20 groups participating, we won one of three awards, "Most Professional Achievement". We were also invited to IMC's office in Amsterdam to meet the team we had been working with. I found the opportunity to work together on an extended project to be very enjoyable and the experience taught me a lot about expected standards in industry and how to work effectively as a team.
-                    </div>
-                </div>
-            </div>
 
-            <div class="centred hiddenContent">
-                <button class="collapsible">OCaml: <b>Front End of a Compiler</b></button>
-                <div class="content">
-                    <div class="textwmargin">
-                        I wrote the lexer and parser for an LR(0) compiler in OCaml, as a way of consolidating some prerequisite reading we were required to do for a compilers course taken in our second year. I chose OCaml for a few reasons: firstly because its functional nature makes the lexer fairly intuitive, akin to a state machine, secondly because I wondered how far I could take a stateless compiler, and lastly as practice for a language I enjoyed writing in but never got the chance to do a larger project with. <br><br>
-                        During the process, I learned a lot from implementing the finer details missed out in books. Most of the important implementation details could be found in <i>Compilers: Principles, Techniques and Tools (Aho, Lam, Sethi & Ullman)</i>, though all code there is presented in an imperative format; converting this to a functional implementation while maintaining statelessness was a challenge. <br><br>
-                        I also wrote the majority of an LALR(1) equivalent (allowing the compiler to understand postfix operations, making it usable for most modern programming languages) which I had hoped to finish by the end of the holidays that year, but uni work took priority and I had to put it on hold -- I'd love to revisit it soon though! <br><br>
-                        You can view the raw ML for the LR(0) version <a href="https://github.com/jacbn/ml-compilers">here</a>.
+            <ol class="grid">
+                <li class="card transition" href="./projects/jcompiler/" style="margin-top:10%;">
+                    <div class="card-top" style="background-color:lightcoral;">
+                        <img class="square iconContainer" style="width: 40%;" src="./files/index/logo-compiler-front.svg" alt="An abstract view of a parse tree, the output of the project.">
                     </div>
-                </div>
-            </div>
+                    <div class="card-base">
+                        <h2 style="color: lightcoral">jCompiler (Front-End)</h2>
+                        <p class="textwmargin">
+                            lexing and parsing an arbitrary input given a grammar
+                        </p>
+                    </div>
+                    <p class="project-info-text">
+                        2021-2022 &#183; OCaml, Java
+                    <p>
+                </li>
 
-            <div class="centred hiddenContent">
-                <button class="collapsible">Python: <b>Pandemic Simulation & Real World Data Analysis</b></button>
-                <div class="content">
-                    <div class="textwmargin">
-                        Over the winter break of 2020 I undertook a two-part project looking into the spread of a pandemic through a population. The first part of the project involved simulating the spread of a pandemic with tunable parameters through a population split into household bubbles. Such parameters included the probability of infecting both another person in the same bubble as well as in a different one, the average number of days taken to recover, and the average household bubble size. By fitting the infectivity and recovery parameters with what we know about COVID-19, for example, it is possible to determine the bubble size required to reduce the R-value to under 1.
-                        <br><br>
-                        The second part of the project involved using real-world data to model the effectiveness of government measures across the world. 
-                        The dataset used was obtained from researchers from the John Hopkins University, and contained the number of new infections and recoveries each day. I looked at how different measures, such as the introduction of mandatory face masks and local and national lockdowns affected the R-value by plotting a phase-space diagram and showing the change in R over time. You can preview some of the results <a href="./pandemic.html">here</a>.
+                <li class="card transition" href="./projects/greenmaps/">
+                    <div class="card-top" style="background-color: wheat;">
+                        <img class="square iconContainer" style="width: 50%;" src="./files/index/logo-green-maps.svg" alt="A leaf on a wheat background, the logo of the Green Maps project.">
                     </div>
-                </div>
-            </div>
+                    <div class="card-base">
+                        <h2 style="color: wheat">Green Maps</h2>
+                        <p class="textwmargin">
+                            reducing vehicle emissions through&NonBreakingSpace;smarter navigation
+                        </p>
+                    </div>
+                    <p class="project-info-text">
+                        2022 &#183; Dart
+                    <p>
+                </li>
 
-            <div class="centred hiddenContent">
-                <button class="collapsible">Java: <b>Sentiment Analysis</b></button>
-                <div class="content">
-                    <div class="textwmargin">
-                        As part of an introduction to NLP, I worked on a project relating to multiple different methods of sentiment analysis to determine which is the most accurate. This began with a simple lexical map of certain keywords which indicate sentiment directly ('good', 'bad', 'enjoyed', 'hated', etc.) which were used to calculate a sentiment score, but I quickly discovered this was a flawed method as the reviewer could be describing a small section of the movie, or use inverting phrases such as 'not bad', which flip the sentiment. I also needed to consider the strength of the words used ('bad' versus 'awful' for example), and the fact that this sentiment map had to be hand-made; it became apparent that a sentiment map was a poor choice and moving to machine learning was a better approach.
-                        <br><br>
-                        As such, I developed a training routine to perform the creation of a similar lexical map. By assuming feature independence it is possible to create a naïve Bayes classifier, which uses a set of training data to build a lexical map as before (but only requires the sentiment of each <i>review</i>, rather than each word -- this can even be done using the author's "star rating" that is usually given alongside a review, rather than manually assigned). The sentiment of a given review is then the max over each sentiment of the product of the probabilities of each word appearing in a review of that sentiment (argmax_s ∏_i s[word_i]) (in practice, I logged each probability to prevent underflow and gave words new to the classifier a small baseline probability of appearing to prevent the system giving 0 probability). 
+                <li class="card transition" href="./projects/pandemic/" style="margin-top: 20%;">
+                    <div class="card-top" style="background-color: lightblue;">
+                        <img class="square iconContainer" style="width: 30%;" src="./files/index/logo-pandemic.svg" alt="A leaf on a wheat background, the logo of the Green Maps project.">
                     </div>
-                </div>
-            </div>
+                    <div class="card-base">
+                        <h2 style="color: lightblue">Pandemic Analysis</h2>
+                        <p class="textwmargin">
+                            simulating a pandemic and analysing real Covid data 
+                        </p>
+                    </div>
+                    <p class="project-info-text">
+                        2020-2021 &#183; Python
+                    <p>
+                </li>
 
-            <div class="centred hiddenContent">
-                <button class="collapsible">C#: <b>Hexad</b></button>
-                <div class="content">
-                    <div class="textwmargin">
-                        Hexad is a mobile game I developed and released from 2018-2019, designed with Unity. The project taught me a lot about the lifecycle of a project, from coming up with the idea, to implementing it, to dealing with the administrative side of releasing an app. 
+                <li class="card">
+                    <div class="card-base">
+                        <h2 style="color: lightgreen">Sentiment Classifier</h2>
+                        <p class="textwmargin">
+                            exploring various methods to interpret the emotion of reviews 
+                        </p>
                     </div>
-                </div>
-            </div>
+                    <p class="project-info-text">
+                        2021 &#183; Java
+                    <p>
+                </li>
 
-            <div class="centred hiddenContent">
-                <button class="collapsible">Python & JS: <b>Maths Art</b></button>
-                <div class="content">
-                    <div class="textwmargin">
-                        To practice math modules in Python (mainly NumPy and Matplotlib), I've made several projects relating to making art using maths. I've ported two of my favourites to JavaScript so you can see a live preview; there's <a href="./maths-art/apollo/apollo.html">Apollonian Gaskets</a> and an iterative creation of the <a href="./maths-art/lotfollah/lotfollah.html">Lotfollah Mosque's Dome pattern</a>. You can also find the Python files at the respective links.<br>
+                <li class="card transition" href="https://play.google.com/store/apps/details?id=com.JBLabs.Hexad">
+                    <div class="card-base">
+                        <h2 style="color: #C3B1E1">Hexad</h2>
+                        <p class="textwmargin">
+                            reaching for high scores by constructing hexagons
+                        </p>
+                    </div>
+                    <p class="project-info-text">
+                        2017-2019 &#183; C#, UnityScript
+                    <p>
+                </li>
+
+                <li class="card transition" href="./maths-art/">
+                    <div class="card-base">
+                        <h2 style="color: #F9D1DA">Maths Art</h2>
+                        <p class="textwmargin">
+                            generating fractals and artistic designs using maths
+                        </p>
+                    </div>
+                    <p class="project-info-text">
+                        2016 onwards &#183; JS, Python
+                    <p>
+                </li>
+
+                <!-- <div class="card">
+                    <button class="collapsible">Python: <b>Pandemic Simulation & Real World Data Analysis</b></button>
+                    <div class="content">
+                        <div class="textwmargin">
+                            Over the winter break of 2020 I undertook a two-part project looking into the spread of a pandemic through a population. The first part of the project involved simulating the spread of a pandemic with tunable parameters through a population split into household bubbles. Such parameters included the probability of infecting both another person in the same bubble as well as in a different one, the average number of days taken to recover, and the average household bubble size. By fitting the infectivity and recovery parameters with what we know about COVID-19, for example, it is possible to determine the bubble size required to reduce the R-value to under 1.
+                            <br><br>
+                            The second part of the project involved using real-world data to model the effectiveness of government measures across the world. 
+                            The dataset used was obtained from researchers from the John Hopkins University, and contained the number of new infections and recoveries each day. I looked at how different measures, such as the introduction of mandatory face masks and local and national lockdowns affected the R-value by plotting a phase-space diagram and showing the change in R over time. You can preview some of the results <a href="./projects/pandemic.html">here</a>.
+                        </div>
                     </div>
                 </div>
-            </div>
+    
+                <div class="card">
+                    <button class="collapsible">Java: <b>Sentiment Analysis</b></button>
+                    <div class="content">
+                        <div class="textwmargin">
+                            As part of an introduction to NLP, I worked on a project relating to multiple different methods of sentiment analysis to determine which is the most accurate. This began with a simple lexical map of certain keywords which indicate sentiment directly ('good', 'bad', 'enjoyed', 'hated', etc.) which were used to calculate a sentiment score, but I quickly discovered this was a flawed method as the reviewer could be describing a small section of the movie, or use inverting phrases such as 'not bad', which flip the sentiment. I also needed to consider the strength of the words used ('bad' versus 'awful' for example), and the fact that this sentiment map had to be hand-made; it became apparent that a sentiment map was a poor choice and moving to machine learning was a better approach.
+                            <br><br>
+                            As such, I developed a training routine to perform the creation of a similar lexical map. By assuming feature independence it is possible to create a naïve Bayes classifier, which uses a set of training data to build a lexical map as before (but only requires the sentiment of each <i>review</i>, rather than each word -- this can even be done using the author's "star rating" that is usually given alongside a review, rather than manually assigned). The sentiment of a given review is then the max over each sentiment of the product of the probabilities of each word appearing in a review of that sentiment (argmax_s ∏_i s[word_i]) (in practice, I logged each probability to prevent underflow and gave words new to the classifier a small baseline probability of appearing to prevent the system giving 0 probability). 
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <button class="collapsible">C#: <b>Hexad</b></button>
+                    <div class="content">
+                        <div class="textwmargin">
+                            Hexad is a mobile game I developed and released from 2018-2019, designed with Unity. The project taught me a lot about the lifecycle of a project, from coming up with the idea, to implementing it, to dealing with the administrative side of releasing an app. 
+                        </div>
+                    </div>
+                </div>-->
+
+            </ol>
 
         </main>
 
         <footer></footer>
     </body>
+    <script type="text/javascript" src="./fade.js"></script>
 
 </html>

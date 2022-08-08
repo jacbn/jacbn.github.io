@@ -1,5 +1,9 @@
 html,
 
+html {
+    background-color: #212527;
+}
+
 body {
     width: 100%;
     height: 100%;
@@ -57,11 +61,20 @@ nav {
     z-index: 99;
 }
 
-nav a {
+nav .a-fade {
     float: right;
     color:#a0a0a0;
     text-align: center;
     padding: 14px 16px;
+    cursor: pointer;
+}
+
+nav .a-fade:hover {
+    background-color: #394146;
+}
+
+.activeNav {
+    background-color: #23282c;
 }
 
 footer {
@@ -74,29 +87,13 @@ footer {
     padding-bottom: 20px;
 }
 
-/*
-#page-container {
-    position: relative;
-    min-height: 100vh;
-}
-  
-#content-wrap {
-    padding-bottom: 2.5rem;
-}*/
-
 .myname {
     float:left;
     text-align:center;
     font-size: 34px;
+    cursor: pointer;
 }
 
-.activeNav {
-    background-color: #23282c;
-}
-
-nav a:hover {
-    background-color: #394146;
-}
 
 .icon {
     width:40px;
@@ -105,7 +102,7 @@ nav a:hover {
 
 .iconContainer {
     text-decoration: none;
-    padding:10px;
+    padding:1%;
 }
 
 .centred {
@@ -117,43 +114,66 @@ nav a:hover {
     margin: 20px 40px;
 }
 
-.hiddenContent {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    margin: 20px;
-    min-width: 50em;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 30%));
+    gap: 5%;
+    row-gap: 10%;
+    padding: 2% 5% 10%;
+    list-style: none;
+    /* padding: 0; */
 }
 
-.collapsible {
-    background-color: #777;
-    color: white;
+.square {
+    width: 100%;
+    aspect-ratio: 1; /*calcs height automatically*/
+}
+
+.card {
+    width: 100%;
+    display: grid;
+    position: relative;
+    align-content: flex-start; /* put the extra space at bottom of card */
+    background-color: #191c20;
+    border-radius: 20px;
+    color: #fff;
     cursor: pointer;
-    padding: 18px;
-    width: 80%;
-    border: none;
-    font-family: "Quicksand";
-    font-size: 20px;
+    -webkit-transition: all 0.5s ease; 
+    transition: all 0.5s ease;
+    float: left;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.card:hover {
+    width: 105%;
+}
+
+.card-top {
+    width: 100%;
+    height: min-content;
+    position: relative;
     text-align: center;
-    outline: none;
-    border-radius: 10px;
-    min-width: 30em;
+    /* transition: max-height 0.1s ease-out; */
+    z-index: 1; /* force being above the base */
+    border-radius: 20px;
 }
 
-.active, .collapsible:hover {
-    background-color: #555;
-}
-
-.collapsible:after {
-    content: '+';
+.card-base {
+    width: 100%;
+    position: relative;
+    text-align: center;
     color: white;
-    font-weight: bold;
-    float: right;
+    font-size: calc(8pt + 1vw);
+    border-radius: 10px;
 }
 
-.active:after {
-    content: "\2212"; /* full length -- */
+.card-base h1 {
+    font-size: calc(12pt + 2vw);
+}
+
+.card-base h2 {
+    font-size: calc(12pt + 1.5vw);
 }
 
 .content {
@@ -169,12 +189,22 @@ nav a:hover {
 }
 
 .pureText {
-    font-size: 12pt;
+    font-size: 14pt;
     margin: 20px 40px;
 }
 
 .textwmargin {
-    margin: 20px 40px 40px;
+    margin: 2% 5% 5%;
+}
+
+.project-info-text {
+    position: absolute;
+    justify-self: right;
+    align-self: flex-end;
+    font-size: 12pt;
+    text-align: right;
+    color:#a0a0a0;
+    margin: 0 5% 3% 0;
 }
 
 .tooltip {
@@ -213,4 +243,34 @@ nav a:hover {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
+}
+
+.filter-white {
+    filter: invert(100%) sepia(0%) saturate(7470%) hue-rotate(6deg) brightness(107%) contrast(108%);
+}
+
+.project-page-icon {
+    float: right;
+    width: 280px;
+    padding: 30px;
+    margin: 0 4% 20px 20px;
+    border-radius: 50px;
+}
+
+.entry-field {
+    margin: 1%;
+    width: 40%;
+    height: 150px;
+    text-align: start;
+    background-color: #111314;
+    color: white;
+}
+
+.centredImage {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin:auto;
 }

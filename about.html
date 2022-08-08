@@ -4,6 +4,7 @@
         
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script type="text/javascript" src="main.js"></script>
         
     </head>
@@ -24,17 +25,15 @@
             </div>
         </header>
         <nav>
-            <a href="./contact.html">Contact</a>
-            <a class="activeNav" href="./about.html">About Me</a>
-            <a href="./">Home</a>
-            
-            
+            <div href="./contact.html" class="a-fade transition" >Contact</div> 
+            <div href="./about.html" class="activeNav a-fade transition" >About Me</div> 
+            <div href="./" class="a-fade transition">Home</div>
         </nav>
         <main>
             <div class="centred pureText">
                 <div class="subtitle">Hi!</div> 
-                <p>I'm Jacob, a second-year Computer Science undergrad at the University of Cambridge. I love to code, especially small projects &#8212 you can find a few of my favourites at my <a href="./index.html">homepage</a>.</p>
-                <p>Aside from my projects, I have a lot of interests within compsci, my favourite probably being algorithmic design; it shows up everywhere, from data science to computer architecture to graphics, and you can really appreciate the effort people have put into designing algorithms for efficiency. There's often a great accompanying story to these algorithms too, such as the development of the Ford-Fulkerson algorithm (it maximises flow through a graph) to calculate both the maximum capacity of the Soviet rail system during the Cold War, and to see which "railway division" would be the most impactful to attack to reduce the Soviet's ability to transport troops or supplies (see the latter half of <a href="https://homepages.cwi.nl/~lex/files/histtrpclean.pdf")>this</a> for more).<p>
+                <p>I'm Jacob, a second-year Computer Science undergrad at the University of Cambridge. I love to code, especially small projects &#8212 you can find a few of my favourites at my <a href="./">homepage</a>.</p>
+                <p>Aside from my projects, I have a lot of interests within compsci, my favourite probably being algorithmic design; it shows up everywhere, from data science to computer architecture to graphics, and you can really appreciate the effort people have put into designing algorithms for efficiency. There's often a great accompanying story to these algorithms too, such as the development of the Ford-Fulkerson algorithm (it maximises flow through a graph), used to calculate both the maximum capacity of the Soviet rail system during the Cold War, and to see which "railway division" would be the most impactful to attack to reduce the Soviet's ability to transport troops or supplies (see the latter half of <a href="https://homepages.cwi.nl/~lex/files/histtrpclean.pdf")>this</a> for more).<p>
                 <p>In terms of hobbies outside of compsci, I love cycling, listening to music, gaming and travel. It's a bit of a dream of mine to tour Scandinavia one day, especially the northernmost parts to see the Northern Lights at their greatest. I've even been learning Swedish so I won't be completely lost -- det är ett vackart språk! </p>
             </div>
 
@@ -42,4 +41,5 @@
 
         <footer></footer>
     </body>
+    <script type="text/javascript" src="./fade.js"></script>
 </html>
