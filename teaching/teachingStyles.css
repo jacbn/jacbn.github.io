@@ -1,11 +1,27 @@
+html,
+
+html {
+    background-color: #212527;
+}
+
+.entry-field {
+    margin: 1%;
+    width: 85%;
+    height: 60px;
+    text-align: start;
+    background-color: #111314;
+    color: white;
+    resize: none;
+}
+
 .teaching-flashcard {
-    width: 25%;
-    height: 220px;
+    width: 430px;
+    height: 270px;
     margin: auto;
     border-radius: 20px;
     background-color: aliceblue;
     position: relative;
-    padding-bottom: 2vw;
+    margin-bottom: 1%;
 }
 
 .teaching-flashcard-top {
@@ -17,9 +33,100 @@
     font-size: 22pt;
 }
 
+.outlined-flashcard {
+    width: 414px;
+    height: 254px;
+    margin: auto;
+    border-radius: 20px;
+    outline: #909EA8 solid 8px;
+    color: #909EA8;
+    position: relative;
+    margin-top: 6px;
+    margin-bottom: 1%;
+    cursor: pointer;
+}
+
+.outlined-flashcard:hover {
+    background-color: #222628;
+    outline-color: #5F6870;
+    color: #5F6870;
+}
+
 .output-text {
     font-size: 3vw; 
     color: #999;
-    padding: 4vw 0 1vw 0;
+    padding-top: 80px;
     overflow-wrap: break-word;
+}
+
+.graphemes-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 2%;
+    padding: 3%;
+    list-style: none;
+}
+
+.graphemes-grid-container > li {
+    padding: 20px 0;
+}
+
+.card-color-picker {
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    z-index: 2;
+    margin: 0 0 0 52%;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.print-button {
+    position: absolute;
+    right: 20px;
+    margin-top: 1%;
+    background-color: transparent;
+    border: 4px solid limegreen;
+    border-radius: 15px;
+    padding: 5px 24px;
+    font-family: inherit;
+    font-size: 24pt;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+
+.print-button:hover {
+    background-color:rgb(40, 162, 40);
+}
+
+@media print {
+
+    html {
+        background-color: white;
+    }
+
+    .hide-on-print {
+        display: none !important;
+    }
+
+    .teaching-flashcard {
+        border: 1px solid black;
+        transform: scale(0.7);
+        margin: 0;
+        break-inside: avoid;
+    }
+
+    .graphemes-grid-container {
+        grid-template-columns: repeat(auto-fill, calc(430px*0.7));
+        grid-auto-rows: calc(270px*0.7);
+        padding: 0;
+        margin: 0;
+        break-inside: avoid;
+    }
+
+    .graphemes-grid-container > li {
+        padding: 0;
+    }
 }

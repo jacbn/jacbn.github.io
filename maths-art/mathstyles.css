@@ -42,13 +42,14 @@ html,
 
 .leftHalf {
     margin: 2% 2% 2% 12%;
-    left: 0%;
-    transform: none;
+    float: left;
 }
 
 .rightHalf {
     margin: 2% 12% 2% 2%;
-    left: 0%;
-    transform: none;
-    float: right;
+    float: right; 
+}
+
+.card:hover {
+    transform: scale(1.02);
 }

@@ -1,4 +1,4 @@
-<html lang="en-GB">
+<html lang="en-GB" id="root">
     <head>
         <title>Grapheme Splitter</title>
         
@@ -12,7 +12,7 @@
     </head>
 
     <body> 
-        <nav class="sticky">
+        <nav class="sticky hide-on-print">
             <div class="myname transition" href='../../'>
                 Jacob <span style="color:#a0a0a0;">Brown</span>
             </div>
@@ -23,15 +23,26 @@
             </div>
         </nav>
         <main> 
+            <button id="print-button" class="print-button hide-on-print">Print</button>
             <div class="centred">
-                <div class="subtitle">Grapheme Splitter</div>
-                <p>This tool allows you to colour a word by its component graphemes. Simply type the text you want to colour into the box below and set which options you want!</p>
-                <textarea class="entry-field" type="text" id="main-entry" placeholder="Enter text here..."></textarea>
-                <br>
-                <div class="teaching-flashcard" id="card1">
-                    <div class="teaching-flashcard-top" style="background-color:deepskyblue"></div>
-                    <div id="output" class="output-text"></div>
-                </div>
+                <div class="subtitle hide-on-print">Grapheme Splitter</div>
+                <p class="hide-on-print">This tool allows you to create flashcards with words coloured by their component graphemes. Simply type the text for each flashcard in the boxes below!</p>
+                <ul id="main-grid" class="graphemes-grid-container">
+                    <li>
+                        <div id="card1" class="teaching-flashcard">
+                            <input id="color1" type="color" value="#00bfff" class="card-color-picker hide-on-print">
+                            <div id ="card1top" class="teaching-flashcard-top" style="background-color:00bfff"></div>
+                            <div id="output1" class="output-text"></div>
+                        </div>
+                        <textarea id="entry1" class="entry-field hide-on-print" type="text" placeholder="Enter text..."></textarea>
+                    </li>
+
+                    <li>
+                        <div id="addCard" class="outlined-flashcard hide-on-print">
+                            <span style="height:100%; line-height: 240px; font-size:100pt">+</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </main>
     </body>

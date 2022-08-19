@@ -1,14 +1,12 @@
 /// <reference path="../../typings/globals/jquery/index.d.ts" />
 
-var input = document.getElementById('main-entry');
-var output = document.getElementById("output");
+var input = document.getElementById('entry1');
+var output = document.getElementById("output1");
 
 const canvas = getTextWidth.canvas = document.createElement("canvas");
 const context = canvas.getContext("2d");
 
-var textWidth;
-
-const phaseColours = {
+const phaseColors = {
     0 : "#000",
     2 : "#fc0",
     3 : "#c9f",
@@ -21,64 +19,71 @@ const phaseColours = {
 WORDS TO FIX BEFORE RELEASE:
     brochure
     school
+    Q, by itself
 */
 
+var textWidth;
 var regexpResults = [];
-const targetHeight = 220;
 var fontSize = 48;
-colourInput();
+const targetHeight = $('#card1').height() - 20 - $('#card1top').height();
+var lineBreak = false;
 
+$('#entry1').on('input', e => {colorInput(e);});
+colorInput(1);
 
-if (input.addEventListener) {
-    input.addEventListener('input', function() {colourInput();}, false);
-} else if (input.attachEvent) {
-    input.attachEvent('onpropertychange', function() {colourInput();});
-}
-
-function colourInput() {
-    const output = $('#output')
-    output.html(splitInput($('#main-entry').val()));
-    const boxWidth = $('#card1').width();
+function colorInput(e) {
+    var num = (typeof e == "number") ? e : ((e) ? $(e.target).prop('id').substring(5) : 1);
+    
+    const output = $('#output' + num);
+    output.html(splitInput($('#entry' + num), num));
+    var boxWidth = $('#card' + num).width();
 
     fontSize = 48;
     output.css('font-size', '48pt');
 
-    while (output.outerHeight() > targetHeight) {
-        console.log("YEE");
-        output.css('padding', '2.5vw 0 0 0');
+    while (output.height() > targetHeight) {
+        output.css('padding-top', '60px');
         fontSize -= 2;
         output.css('font-size', fontSize.toString() + 'pt');
     }
 
     if (fontSize == 48) {
-        if (textWidth > boxWidth) {
-            output.css('padding', '2.5vw 0 0 0');
+        if (boxWidth > 0 && (textWidth > boxWidth || lineBreak)) { // if there's a line break on the card. > 0 check for uninitialised weirdness
+            output.css('padding-top', '60px');
             output.css('font-size', '48pt');
         } else {
-            output.css('padding', '4vw 0 1vw 0');
+            output.css('padding-top', '80px');
             output.css('font-size', '48pt');
         }
     }
 }
 
-function splitInput(input) {
-    input = input.trim();
+function splitInput(entryBox, cardIndex) {
+    input = entryBox.val().trim();
     if (input == '') {
-        const txt = "Enter text above...";
-        textWidth = getTextWidth(txt);
-        return $("<span>").text(txt).css({color: "#aaa"});
+        const txt = "Enter text...";
+        textWidth = getTextWidth(txt, cardIndex);
+        return $("<span>").text(txt).css({color: "#bbb"});
     }
     splits = [];
     index = 0;
     var inputToProcess = input.toLowerCase();
-    textWidth = getTextWidth(inputToProcess)
+    textWidth = getTextWidth(inputToProcess, cardIndex)
     genRegexpResults(inputToProcess);
+    var _breakExists = false
     while (inputToProcess.length > 0) {
         var g = takeGrapheme(inputToProcess, index);
-        splits.push(constructSpan(input.substring(index, index+g[1]), phaseColours[g[2]]));
+        if (g[0] == '\n') {
+            splits.push("<br>");
+            _breakExists = true;
+            lineBreak = true;
+        } else {
+            splits.push(constructSpan(input.substring(index, index+g[1]), phaseColors[g[2]]));
+        }
         inputToProcess = inputToProcess.substring(g[1]);
         index += g[1];
     }
+    if (!_breakExists) lineBreak = false;
     return splits;
 }
 
@@ -139,17 +144,16 @@ function takeRegexp(index) {
     return [bestMatch, bestMatch.length, phase];
 }
 
-function constructSpan(text, colour) {
-    return $("<span>").text(text).css({color: colour});
+function constructSpan(text, color) {
+    return $("<span>").text(text).css({color: color});
 }
 
-
-function getTextWidth(text) {
-    context.font = getCanvasFont();
+function getTextWidth(text, cardIndex) {
+    context.font = getCanvasFont($('#card' + cardIndex));
     const metrics = context.measureText(text);
     return metrics.width;
 }
 
-function getCanvasFont(el = $('#output')) {
-  return `${el.css('font-weight')} 48pt ${el.css('font-family')}`;
+function getCanvasFont(card) {
+    return `${card.css('font-weight')} 48pt ${card.css('font-family')}`;
 }
