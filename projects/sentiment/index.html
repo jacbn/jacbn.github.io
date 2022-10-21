@@ -1,0 +1,46 @@
+<html lang="en-GB">
+    <head>
+        <title>Sentiment Classifier</title>
+        <link rel="stylesheet" href="../../styles.css">
+        <link rel="stylesheet" href="../blogstyle.css">
+        <link rel="stylesheet" href="../../files/pandemic/datastyles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async
+                src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+    </head>
+
+    <body> 
+        <nav class="sticky">
+            <div class="myname transition" href='../../'>
+                Jacob <span style="color:#a0a0a0;">Brown</span>
+            </div>
+            <div>
+                <div href="../../contact.html" class="a-fade transition">Contact</div> 
+                <div href="../../about.html" class="a-fade transition">About Me</div> 
+                <div href="../../" class="a-fade transition">Home</div>
+            </div>
+        </nav>
+        <main class="blog">
+            <div class="centred subtitle">Sentiment Classifier</div> 
+            <div class="square project-page-icon" style="background-color: lightgreen;">
+                <img class="square iconContainer" src="../../files/index/logo-sentiment-classifier.svg">
+                </div>
+            <div class="pureText">
+                <p>
+                    As part of an introduction to NLP, I worked on a project comparing multiple different methods of sentiment analysis to determine which is the most accurate. This began with a simple lexical map of certain keywords which indicate sentiment directly ('good', 'bad', 'enjoyed', 'hated', etc.) which were used to calculate a sentiment score over a dataset of movie reviews, but I quickly discovered this was a flawed method as the reviewer could be describing a small section of the movie, or use inverting phrases such as 'not bad'. I also needed to consider the strength of the words used ('bad' versus 'awful' for example), and found that since the sentiment map was hand-made, it would succumb to biases if I were to include word strengths; it became apparent that this was a poor classification choice and moving to an automated machine learning approach would work much better.
+                </p>
+                <p>
+                    As such, I developed a training routine to perform the creation of a similar lexical map. Under the assumption of feature independence I created a naïve Bayes classifier, which uses a set of training data to build a lexical map as before. The advantage of this approach, besides being automatic, is that it only requires the sentiment of each review in the training set, rather than each word — this can be done using the review's "star rating", which we assume to be a ground truth. The sentiment \(s\) of a given unseen review is then the max over each sentiment of the product of the probabilities of each word appearing in a review of that sentiment: 
+                    \[\text{argmax}_s \left( \prod_i s[\text{word}_i] \right)\]
+                    (In practice, though, I logged each probability to prevent underflow and gave words new to the classifier a small baseline probability of appearing to prevent the probability being 0 for reviews containing words the system hasn't seen before.)
+                </p> 
+            </div>
+
+
+        </main>
+    </body>
+    <script type="text/javascript" src="../../fade.js"></script>
+</html>

@@ -9,7 +9,7 @@ html {
     width: 85%;
     height: 60px;
     text-align: start;
-    background-color: #111314;
+    background-color: transparent;
     color: white;
     resize: none;
 }
@@ -55,8 +55,16 @@ html {
 .output-text {
     font-size: 3vw; 
     color: #999;
+    height: 70%;
     padding-top: 80px;
     overflow-wrap: break-word;
+    outline: 0px solid transparent;
+}
+
+.output-text:empty:before{
+    content:attr(placeholder-text);
+    color:#bbb;
+    padding-top: 80px;
 }
 
 .graphemes-grid-container {
