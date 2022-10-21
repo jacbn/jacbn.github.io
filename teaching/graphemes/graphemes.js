@@ -1,8 +1,5 @@
 /// <reference path="../../typings/globals/jquery/index.d.ts" />
 
-var input = document.getElementById('entry1');
-var output = document.getElementById("output1");
-
 const canvas = getTextWidth.canvas = document.createElement("canvas");
 const context = canvas.getContext("2d");
 
@@ -26,20 +23,37 @@ var textWidth;
 var regexpResults = [];
 var fontSize = 48;
 const targetHeight = $('#card1').height() - 20 - $('#card1top').height();
-var lineBreak = false;
+var lineBreaks = 0;
+var isNewLine = 0;
 
-$('#entry1').on('input', e => {colorInput(e);});
+//$('#output1').on('input', e => {colorInput(e);});
+document.getElementById("output1").addEventListener("input", e => {colorInput(e)}, false);
 colorInput(1);
 
 function colorInput(e) {
-    var num = (typeof e == "number") ? e : ((e) ? $(e.target).prop('id').substring(5) : 1);
+    var num = (typeof e == "number") ? e : ((e) ? $(e.target).prop('id').substring(6) : 1);
     
     const output = $('#output' + num);
-    output.html(splitInput($('#entry' + num), num));
-    var boxWidth = $('#card' + num).width();
+    const htmlEl = document.getElementById("output" + num);
 
+    // console.log($(output.target));
+
+    //find output.target and replace the below innertext bit with the text in that
+
+    const caretIndex = getCaretIndex(htmlEl);
+
+    const newText = splitInput(output.prop('innerText'), num);
+    if (typeof newText == 'str' && newText.trim() == '') return;
+    output.html(newText);
+
+    console.log(isNewLine);
+    setCaretIndex(htmlEl, caretIndex + isNewLine);
+
+
+    var boxWidth = $('#card' + num).width();
     fontSize = 48;
     output.css('font-size', '48pt');
+    output.css('padding-top', '80px');
 
     while (output.height() > targetHeight) {
         output.css('padding-top', '60px');
@@ -48,7 +62,7 @@ function colorInput(e) {
     }
 
     if (fontSize == 48) {
-        if (boxWidth > 0 && (textWidth > boxWidth || lineBreak)) { // if there's a line break on the card. > 0 check for uninitialised weirdness
+        if (boxWidth > 0 && (textWidth > boxWidth || lineBreaks > 0)) { // if there's a line break on the card. > 0 check for uninitialised weirdness
             output.css('padding-top', '60px');
             output.css('font-size', '48pt');
         } else {
@@ -59,31 +73,39 @@ function colorInput(e) {
 }
 
 function splitInput(entryBox, cardIndex) {
-    input = entryBox.val().trim();
-    if (input == '') {
-        const txt = "Enter text...";
-        textWidth = getTextWidth(txt, cardIndex);
-        return $("<span>").text(txt).css({color: "#bbb"});
+    input = entryBox;
+    if (input.trim() == '') {
+        return '';
     }
+
+    isNewLine = 0;
+    console.log(input.slice(-1));
+    if (input.slice(-1) == '\n') {
+        isNewLine = 1;
+    }
+
     splits = [];
     index = 0;
     var inputToProcess = input.toLowerCase();
     textWidth = getTextWidth(inputToProcess, cardIndex)
     genRegexpResults(inputToProcess);
-    var _breakExists = false
+    var _breakExists = false;
+    lineBreaks = 0;
     while (inputToProcess.length > 0) {
         var g = takeGrapheme(inputToProcess, index);
         if (g[0] == '\n') {
             splits.push("<br>");
             _breakExists = true;
-            lineBreak = true;
+            lineBreaks++;
         } else {
-            splits.push(constructSpan(input.substring(index, index+g[1]), phaseColors[g[2]]));
+            for (char of input.substring(index, index+g[1])) {
+                splits.push(constructSpan(char, phaseColors[g[2]]));
+            }
         }
         inputToProcess = inputToProcess.substring(g[1]);
         index += g[1];
     }
-    if (!_breakExists) lineBreak = false;
+    if (!_breakExists) lineBreaks = 0;
     return splits;
 }
 
@@ -156,4 +178,34 @@ function getTextWidth(text, cardIndex) {
 
 function getCanvasFont(card) {
     return `${card.css('font-weight')} 48pt ${card.css('font-family')}`;
+}
+
+//courtesy of https://javascript.plainenglish.io/how-to-find-the-caret-inside-a-contenteditable-element-955a5ad9bf81
+function getCaretIndex(element) {
+    let position = 0;
+    const isSupported = typeof window.getSelection !== "undefined";
+    if (isSupported) {
+        const selection = window.getSelection();
+        if (selection.rangeCount !== 0) {
+            const range = window.getSelection().getRangeAt(0);
+            const preCaretRange = range.cloneRange();
+            preCaretRange.selectNodeContents(element);
+            preCaretRange.setEnd(range.endContainer, range.endOffset);
+            position = preCaretRange.toString().length;
+        }
+    }
+    return position;
+}
+
+function setCaretIndex(element, index) {
+    var range = document.createRange();
+    var selection = window.getSelection();
+
+    const breaks = $(element).children().slice(0,index).filter('br');
+    
+    range.setStart(element, index+breaks.length);
+    range.collapse(true)
+    
+    selection.removeAllRanges();
+    selection.addRange(range);
 }
