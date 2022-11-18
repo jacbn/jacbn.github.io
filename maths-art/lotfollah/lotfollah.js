@@ -10,6 +10,7 @@ var ANGLE = 2*Math.PI/SYMCOUNT;
 
 const canvas = document.getElementById("mainCanvas");
 const ctx = canvas.getContext("2d");
+ctx.canvas.width = ctx.canvas.height = Math.min(window.innerWidth/1.5, window.innerHeight/1.5);
 ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 
 document.getElementById("sizeSlider").oninput = function() {init()};
@@ -117,11 +118,14 @@ function iterate(centre, iters, firstIter = true) {
 
 
     for (var i = 0; i < SYMCOUNT; i++) {
-        bc.drawClosedShape(ctx, calculateColour(i, ITERATIONS-iters),
-            rotateAboutOrigin(intersectT, i*ANGLE),
-            rotateAboutOrigin(intersectL, i*ANGLE),
-            rotateAboutOrigin(intersectB, i*ANGLE),
-            rotateAboutOrigin(intersectR, i*ANGLE)
+        bc.drawShape(ctx, 
+            [
+                rotateAboutOrigin(intersectT, i*ANGLE),
+                rotateAboutOrigin(intersectL, i*ANGLE),
+                rotateAboutOrigin(intersectB, i*ANGLE),
+                rotateAboutOrigin(intersectR, i*ANGLE)
+            ], 
+            true, calculateColour(i, ITERATIONS-iters),
         );
     }
     

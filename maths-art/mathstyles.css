@@ -9,6 +9,10 @@ html,
     text-align: center;
 }
 
+.h4moreTMargin {
+    margin-top: 4em;
+}
+
 .slider {
     width: 120px;
 }
@@ -29,9 +33,17 @@ html,
     justify-content:center;
 }
 
+.vertical {
+    display: flex; 
+    flex-direction: column;
+    padding: 3px;
+    gap: 3px;
+}
+
 .canvasAndOptions {
-    max-width: min-content
-    
+    width: 100%;
+    height: 100%;
+    margin: 20px;
 }
 
 .nomargin {
@@ -40,16 +52,50 @@ html,
     margin-right: 0; 
 }
 
-.leftHalf {
-    margin: 2% 2% 2% 12%;
-    float: left;
+.mathsArtGrid {
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 45%));
+    gap: 5%;
+    row-gap: 5%;
+    list-style: none;
+    padding: 2% 10%;
 }
 
-.rightHalf {
-    margin: 2% 12% 2% 2%;
-    float: right; 
+.mathsArtGrid > .card {
+    margin:0;
 }
 
 .card:hover {
     transform: scale(1.02);
+}
+
+.cdiv {
+    left: 50%;
+    margin: auto;
+}
+
+.radialsNumericalInput {
+    width: 150px;
+    height: 16px;
+    margin: 5px;
+    padding: 0;
+}
+
+.radialsEmptyInput {
+    width: 150px;
+    height: 16px;
+    margin: 5px;
+    border: none;
+    visibility: hidden;
+}
+
+.radialsButton {
+    width: 100px;
+}
+
+.radialsListEntry {
+    display: flex;  
+    justify-content:space-around;
+    margin: 0 20%;
 }

@@ -9,6 +9,7 @@ $(document).ready(function() {
         // event.preventDefault();
         linkLocation = event.currentTarget.attributes.href.value;
         $("body").fadeOut(FADE_OUT_TIME, redirectPage);
+        $("body").fadeIn(FADE_IN_TIME);
     });
          
     function redirectPage() {
