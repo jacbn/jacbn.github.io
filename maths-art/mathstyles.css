@@ -55,11 +55,12 @@ html,
 .mathsArtGrid {
     margin: auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 45%));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 47.5%));
     gap: 5%;
     row-gap: 5%;
     list-style: none;
     padding: 2% 10%;
+    padding-bottom: 5%;
 }
 
 .mathsArtGrid > .card {
