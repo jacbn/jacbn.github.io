@@ -146,8 +146,12 @@ function removeCircle() {
     }
 }
 
-function changeRollType() {
-    rollType = (rollType + 2) % 3 - 1;
+function changeRollType(val=rollType) {
+    if (val == rollType) {
+        rollType = (rollType + 2) % 3 - 1;
+    } else {
+        rollType = val;
+    }
     fullReset();
 }
 
@@ -159,12 +163,14 @@ function setExample(example) {
             circleSpeeds = [8];
             addCircle(80, 0, true)
             addCircle(20, 2);
+            changeRollType(1);
             break;
         case "triangle":
             circleRadii = [0];
             circleSpeeds = [4];
             addCircle(80, 0, true)
             addCircle(20, -2);
+            changeRollType(1);
             break;
         case "club":
             circleRadii = [0];
@@ -172,6 +178,7 @@ function setExample(example) {
             addCircle(70, 0, true);
             addCircle(60, -2);
             addCircle(40, 6);
+            changeRollType(0);
             break;
         case "powersOfTwo":
             circleRadii = [0];
@@ -184,6 +191,7 @@ function setExample(example) {
             addCircle(4, 16);
             addCircle(2, 32);
             addCircle(1, 64);
+            changeRollType(0);
             break;
     }
     fullReset(baseSpeed, example);
