@@ -3,6 +3,14 @@
 const canvas = getTextWidth.canvas = document.createElement("canvas");
 const context = canvas.getContext("2d");
 
+class Grapheme {
+    constructor(value, phase) {
+        this.value = value;
+        this.phase = phase;
+        this.length = value.length;
+    }
+}
+
 const phaseColors = {
     0 : "#000",
     2 : "#fc0",
@@ -20,11 +28,12 @@ WORDS TO FIX BEFORE RELEASE:
 */
 
 var textWidth;
-var regexpResults = [];
 var fontSize = 48;
 const targetHeight = $('#card1').height() - 20 - $('#card1top').height();
 var lineBreaks = 0;
 var isNewLine = 0;
+
+var cardStrings = [''];
 
 //$('#output1').on('input', e => {colorInput(e);});
 document.getElementById("output1").addEventListener("input", e => {colorInput(e)}, false);
@@ -38,15 +47,24 @@ function colorInput(e) {
 
     // console.log($(output.target));
 
-    //find output.target and replace the below innertext bit with the text in that
+    // find output.target and replace the below innertext bit with the text in that
 
     const caretIndex = getCaretIndex(htmlEl);
+    
+    // if (e.data != undefined) {
+    //     console.log("LETTER: " + e.data + "; INDEX: " + caretIndex);
+    //     cardStrings[num-1] = cardStrings[num-1].substring(0, caretIndex-1) + e.data + cardStrings[num-1].substring(caretIndex-1);
+    //     console.log(cardStrings);
+    //     $('#entry1').val(cardStrings[num-1]);
+    // } else {
+    //     console.log("backspace; INDEX: " + caretIndex);
+    // }
+    
 
     const newText = splitInput(output.prop('innerText'), num);
     if (typeof newText == 'str' && newText.trim() == '') return;
     output.html(newText);
 
-    console.log(isNewLine);
     setCaretIndex(htmlEl, caretIndex + isNewLine);
 
 
@@ -78,44 +96,55 @@ function splitInput(entryBox, cardIndex) {
         return '';
     }
 
+    input = input.replace('\n\n', '\n');
+    console.log("WHOLE INPUT: " + input.split('').map((e) => e.charCodeAt(0)).join(','));
+
     isNewLine = 0;
-    console.log(input.slice(-1));
-    if (input.slice(-1) == '\n') {
-        isNewLine = 1;
-    }
+    // if (input.charAt(input.length-1) == '\n') {
+    //     isNewLine = 1;
+    // }
 
     splits = [];
     index = 0;
+    lineBreaks = 0;
+    var _breakExists = false;
+
     var inputToProcess = input.toLowerCase();
     textWidth = getTextWidth(inputToProcess, cardIndex)
-    genRegexpResults(inputToProcess);
-    var _breakExists = false;
-    lineBreaks = 0;
+    
     while (inputToProcess.length > 0) {
-        var g = takeGrapheme(inputToProcess, index);
-        if (g[0] == '\n') {
-            splits.push("<br>");
+        const grapheme = takeGrapheme(inputToProcess, index);
+        console.log(grapheme.value + ": " + grapheme.value.charCodeAt(0) + "; " + '\n'.charCodeAt(0));
+        if (grapheme.value == '\n') {
+            splits.push($("<span>").html("<br>"));
             _breakExists = true;
             lineBreaks++;
+            // if (lineBreaks == 0) {
+            //     splits.push($("<span>").html("<br>"));
+            // }
         } else {
-            for (char of input.substring(index, index+g[1])) {
-                splits.push(constructSpan(char, phaseColors[g[2]]));
+            for (char of input.substring(index, index+grapheme.length)) {
+                splits.push(constructSpan(char, phaseColors[grapheme.phase]));
             }
         }
-        inputToProcess = inputToProcess.substring(g[1]);
-        index += g[1];
+        inputToProcess = inputToProcess.substring(grapheme.length);
+        index += grapheme.length;
     }
     if (!_breakExists) lineBreaks = 0;
+
     return splits;
 }
 
+// compare then take the superior grapheme match (standard / regex).
+// @return value of the form [grapheme, length, phase]
 function takeGrapheme(string, index) {
     var standard = takeStandard(string);
-    var regexp = takeRegexp(index);
+    var regexp = takeRegexp(string, index);
     // prioritise by phase, or take regexp if equal
-    return (regexp[2] >= standard[2] && regexp[2] != 0) ? regexp : standard;
+    return (regexp.phase >= standard.phase && regexp.phase != 0) ? regexp : standard;
 }
 
+// take the best standard grapheme match from the string
 function takeStandard(string) {
     var bestMatch = '';
     var phase = 0;
@@ -126,36 +155,20 @@ function takeStandard(string) {
         }
     });
     if (bestMatch == '') {
-        bestMatch = string[0];
-    }
-    return [bestMatch, bestMatch.length, phase];
-}
-
-function genRegexpResults(original) {
-    regexpResults = [];
-    var result = [];
-    var matchIndex = 0;
-    for (pair of graphemeRegexps) {
-        var copy = original;
-        var match = copy.match(pair[0]);
-        var removedChars = 0;
-        for (_ in match) {
-            result = pair[0].exec(copy);
-            result.index += removedChars;
-            result.phase = pair[1];
-            regexpResults.push(result);
-
-            pair[0].lastIndex = 0;
-            matchIndex = copy.indexOf(match[0]);
-            copy = copy.substring(0, matchIndex).concat(copy.substring(matchIndex + match[0].length));
-            removedChars += match[0].length;
+        if (string.charAt(0) == '\n' && string.length >= 2 && string.charAt(1) == '\n') {
+            bestMatch = '\n\n';
+        } else {
+            bestMatch = string.charAt(0);
         }
     }
+    return new Grapheme(bestMatch, phase);
 }
 
-function takeRegexp(index) {
+// take the best regexp match from the string at the given index
+function takeRegexp(string, index) {
     var bestMatch = '';
     var phase = 0;
+    const regexpResults = genRegexpResults(string); // see ./phases.js
     for (result of regexpResults) {
         if (index == result.index && result.phase > phase) {
             bestMatch = result[0];
@@ -163,7 +176,7 @@ function takeRegexp(index) {
         }
     }
     
-    return [bestMatch, bestMatch.length, phase];
+    return new Grapheme(bestMatch, phase);
 }
 
 function constructSpan(text, color) {
@@ -194,6 +207,7 @@ function getCaretIndex(element) {
             position = preCaretRange.toString().length;
         }
     }
+    
     return position;
 }
 
@@ -201,10 +215,15 @@ function setCaretIndex(element, index) {
     var range = document.createRange();
     var selection = window.getSelection();
 
-    const breaks = $(element).children().slice(0,index).filter('br');
+    const children = $(element).children().toArray();
+    const breaks = Math.max(0, children.filter((el) => el.innerHTML == '<br>').length-1);
+    console.log(children);
     
-    range.setStart(element, index+breaks.length);
-    range.collapse(true)
+    // range.setStart(element, index+breaks);
+    // range.collapse(true);
+
+    range.setStart(element, $(element).text().length);
+    range.collapse(true);
     
     selection.removeAllRanges();
     selection.addRange(range);
