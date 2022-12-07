@@ -31,7 +31,6 @@ var textWidth;
 var fontSize = 48;
 const targetHeight = $('#card1').height() - 20 - $('#card1top').height();
 var lineBreaks = 0;
-var isNewLine = 0;
 
 var cardStrings = [''];
 
@@ -65,7 +64,7 @@ function colorInput(e) {
     if (typeof newText == 'str' && newText.trim() == '') return;
     output.html(newText);
 
-    setCaretIndex(htmlEl, caretIndex + isNewLine);
+    setCaretIndex(htmlEl, caretIndex);
 
 
     var boxWidth = $('#card' + num).width();
@@ -96,13 +95,13 @@ function splitInput(entryBox, cardIndex) {
         return '';
     }
 
-    input = input.replace('\n\n', '\n');
-    console.log("WHOLE INPUT: " + input.split('').map((e) => e.charCodeAt(0)).join(','));
+    input = input.replace('\u200b', '');
+    while (input.includes('\n\n')) {
+        input = input.replace('\n\n', '\n');
+    }
+    input += '\u200b'
 
-    isNewLine = 0;
-    // if (input.charAt(input.length-1) == '\n') {
-    //     isNewLine = 1;
-    // }
+    console.log("WHOLE INPUT: " + input.split('').map((e) => e.charCodeAt(0)).join(','));
 
     splits = [];
     index = 0;
@@ -114,7 +113,7 @@ function splitInput(entryBox, cardIndex) {
     
     while (inputToProcess.length > 0) {
         const grapheme = takeGrapheme(inputToProcess, index);
-        console.log(grapheme.value + ": " + grapheme.value.charCodeAt(0) + "; " + '\n'.charCodeAt(0));
+        // console.log(grapheme.value + ": " + grapheme.value.charCodeAt(0) + "; " + '\n'.charCodeAt(0));
         if (grapheme.value == '\n') {
             splits.push($("<span>").html("<br>"));
             _breakExists = true;
@@ -214,7 +213,7 @@ function getCaretIndex(element) {
 function setCaretIndex(element, index) {
     var range = document.createRange();
     var selection = window.getSelection();
-
+    index
     const children = $(element).children().toArray();
     const breaks = Math.max(0, children.filter((el) => el.innerHTML == '<br>').length-1);
     console.log(children);
@@ -222,7 +221,12 @@ function setCaretIndex(element, index) {
     // range.setStart(element, index+breaks);
     // range.collapse(true);
 
-    range.setStart(element, $(element).text().length);
+    // console.log("text: " + $(element).text());
+
+    // l = $(element).text().length;
+    l = $(element).prop('childNodes').length;
+
+    range.setStart(element, l);
     range.collapse(true);
     
     selection.removeAllRanges();
