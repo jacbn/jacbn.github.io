@@ -22,7 +22,7 @@ html {
     background-color: aliceblue;
     position: relative;
     margin-bottom: 1%;
-    white-space: pre;
+    white-space: break-spaces;
 }
 
 .teaching-flashcard-top {
