@@ -22,6 +22,7 @@ html {
     background-color: aliceblue;
     position: relative;
     margin-bottom: 1%;
+    white-space: break-spaces;
 }
 
 .teaching-flashcard-top {
@@ -137,4 +138,10 @@ html {
     .graphemes-grid-container > li {
         padding: 0;
     }
+}
+
+
+/* firefox whitespace in HTML fix */
+div {
+    font-size: 0;
 }
