@@ -17,6 +17,7 @@ function addCard() {
     `);
     $('#addCard').click(function () {addCard()});
     
+    document.getElementById(`output${cards}`).addEventListener("input", e => {colorInput(e)}, false);
 
     colorInput(cards);
 }
@@ -30,16 +31,16 @@ function generateCard(index, color=getColor()) {
     ).append(
         $("<div>").prop("id", `card${index}top`).addClass("teaching-flashcard-top").css("background-color",color)
     ).append(
-        $("<div>").prop("id", `output${index}`).addClass("output-text")
+        $("<div>").prop("id", `output${index}`).addClass("output-text").attr('contenteditable','true')
     ));
 
     colorPicker.change(function (e) {changeColor(e)});
 
-    const entry = $("<textarea>").addClass("entry-field").addClass("hide-on-print");
-    entry.prop('id',`entry${index}`).prop('placeholder', 'Enter text...');
-    entry.on('input', e => {colorInput(e);});
+    // const entry = $("<textarea>").addClass("entry-field").addClass("hide-on-print");
+    // entry.prop('id',`entry${index}`).prop('placeholder', 'Enter text...');
+    // entry.on('input', e => {colorInput(e);});
 
-    card.append(entry);
+    // card.append(entry);
 
     return card;
 }
