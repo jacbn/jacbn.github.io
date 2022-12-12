@@ -3,7 +3,7 @@ FADE_IN_TIME = 150;
 FADE_OUT_TIME = 150;
 
 $("body").css("display", "none");
-$(document).ready(function() {
+$(window).on('pageshow', function(){
     $("body").fadeIn(FADE_IN_TIME);
     $(".transition").click(function(event){
         // event.preventDefault();

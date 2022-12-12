@@ -3,6 +3,7 @@ import Complex from '../../modules/basicComplex.js';
 
 var canvas = document.getElementById("mainCanvas");
 var ctx = canvas.getContext("2d");
+ctx.canvas.width = ctx.canvas.height = Math.min(window.innerWidth/1.5, window.innerHeight/1.5);
 ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 
 document.getElementById("ratioSlider").oninput = function() {init()};
