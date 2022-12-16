@@ -51,7 +51,6 @@ function colorInput(e) {
     const caretIndex = getCaretIndex(htmlEl);
 
     // we use a zero-width space to allow newlines to propagate, such that when you press enter it actually shows a new line.
-    // 
     var inputText = output.prop('innerText');
     inputText = inputText.replace('\u200b', '');
     if (inputText.trim() == '') {

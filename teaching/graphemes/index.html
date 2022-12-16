@@ -26,11 +26,16 @@
             <button id="print-button" class="print-button hide-on-print">Print</button>
             <div class="centred">
                 <div class="subtitle hide-on-print">Grapheme Splitter</div>
-                <p class="hide-on-print">This tool allows you to create flashcards with words coloured by their component graphemes. Simply type the text for each flashcard in the boxes below!</p>
+                <p class="description hide-on-print">This tool allows you to create flashcards with words coloured by their component graphemes. Simply type the text for each flashcard in the boxes below!</p>
                 <ul id="main-grid" class="graphemes-grid-container">
                     <li>
                         <div id="card1" class="teaching-flashcard">
-                            <input id="color1" type="color" value="#00bfff" class="card-color-picker hide-on-print">
+                            <div class="card-settings">
+                                <input id="color1" type="color" value="#00bfff" class="card-color-picker hide-on-print">
+                                <button id="del1" class="delete-card hide-on-print" disabled style="background-color:#661414; border-color: #B24531;">
+                                    <img class="deleteIcon" src="../icons/bin.svg">
+                                </button>
+                            </div>
                             <div id ="card1top" class="teaching-flashcard-top" style="background-color:00bfff"></div>
                             <div id="output1" contenteditable="true" class="output-text" placeholder-text="Enter text..."></div>
                         </div>
