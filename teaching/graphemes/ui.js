@@ -1,8 +1,21 @@
 var cards = 1;
 
+const isChromium = navigator.userAgent.indexOf("Chrome") != -1 
+
 $('#addCard').click(function () {addCard()});
 $('#color1').change(function (e) {changeColor(e)});
-$('#print-button').click(function () {window.print()});
+$('#del1').change(function (e) {deleteCard(e)});
+$('#print-button').click(function () {tryPrint()});
+
+function tryPrint() {
+    if (isChromium) {
+        window.print()
+    } else {
+        if (confirm("Printing is only fully supported on Chromium-based browsers (Google Chrome, Microsoft Edge, Opera, etc). By continuing, you may see visual artefacts or incorrect page separation between cards.")) {
+            window.print();
+        }
+    }
+}
 
 function addCard() {
     cards += 1;
@@ -23,24 +36,21 @@ function addCard() {
 }
 
 function generateCard(index, color=getColor()) {
+    const settings = $("<div>").addClass("card-settings");
     const colorPicker = $("<input>").prop("id", `color${index}`).prop("type", "color").prop("tabindex", -1)
-                        .prop("value", "#00bfff").addClass("card-color-picker").addClass("hide-on-print").css("cursor", "pointer");
+                        .prop("value", "#00bfff").addClass("card-color-picker").addClass("hide-on-print");
+    const deleteButton = $("<button>").prop("id", `del${index}`).addClass("delete-card").addClass("hide-on-print").append($("<img>").addClass("deleteIcon").prop("src", "../icons/bin.svg"));
 
-    const card = $("<div>").append($("<div>").prop("id", `card${index}`).addClass("teaching-flashcard").append(
-        colorPicker
+    const card = $("<div>").append($("<div>").prop("id", `card${index}`).addClass("teaching-flashcard").addClass("no-page-break").append(
+        settings.append(colorPicker).append(deleteButton)
     ).append(
         $("<div>").prop("id", `card${index}top`).addClass("teaching-flashcard-top").css("background-color",color)
     ).append(
-        $("<div>").prop("id", `output${index}`).addClass("output-text").attr('contenteditable','true')
+        $("<div>").prop("id", `output${index}`).addClass("output-text").attr('contenteditable','true').attr('placeholder-text', 'Enter text...')
     ));
 
+    deleteButton.click(function (e) {deleteCard(e)});
     colorPicker.change(function (e) {changeColor(e)});
-
-    // const entry = $("<textarea>").addClass("entry-field").addClass("hide-on-print");
-    // entry.prop('id',`entry${index}`).prop('placeholder', 'Enter text...');
-    // entry.on('input', e => {colorInput(e);});
-
-    // card.append(entry);
 
     return card;
 }
@@ -52,4 +62,9 @@ function getColor() {
 function changeColor(e) {
     const num = $(e.target).prop('id').substring(5);
     $(`#card${num}top`).css('background-color', $(`#color${num}`).val());
+}
+
+function deleteCard(e) {
+    const num = e.currentTarget.id.substring(3)
+    $(`#card${num}`).parent().parent().remove();
 }

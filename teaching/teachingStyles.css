@@ -4,6 +4,12 @@ html {
     background-color: #212527;
 }
 
+
+.description {
+    font-size: 14pt;
+    padding: 5px 40px;
+}
+
 .entry-field {
     margin: 1%;
     width: 85%;
@@ -60,6 +66,7 @@ html {
     padding-top: 80px;
     overflow-wrap: break-word;
     outline: 0px solid transparent;
+    cursor:text;
 }
 
 .output-text:empty:before{
@@ -80,15 +87,46 @@ html {
     padding: 20px 0;
 }
 
+.card-settings {
+    position: absolute;
+    z-index: 2;
+    margin: 0 0 0 102%;
+    background-color: transparent;
+}
+
 .card-color-picker {
     height: 30px;
     width: 30px;
-    position: absolute;
+    /* position: absolute; */
     z-index: 2;
-    margin: 0 0 0 52%;
+    /* margin: 0 0 0 52%; */
     background-color: transparent;
     border: none;
     cursor: pointer;
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+
+.delete-card {
+    height: 25px;
+    width: 25px;
+    /* position: absolute; */
+    z-index: 2;
+    /* margin: 10% 0 0 52.5%; */
+    /* background-color: transparent; */
+    /* border: none; */
+    border-color: tomato;
+    cursor: pointer;
+    background-color: firebrick;
+    border-radius: 13px;
+}
+
+.deleteIcon {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    right: 8px;
+    bottom: 5px
 }
 
 .print-button {
@@ -114,6 +152,7 @@ html {
 
     html {
         background-color: white;
+        print-color-adjust: exact;
     }
 
     .hide-on-print {
@@ -123,8 +162,9 @@ html {
     .teaching-flashcard {
         border: 1px solid black;
         transform: scale(0.7);
-        margin: 0;
-        break-inside: avoid;
+        /* margin: 0; */
+        /* break-inside: avoid; */
+        /* page-break-after: always; */
     }
 
     .graphemes-grid-container {
@@ -132,16 +172,26 @@ html {
         grid-auto-rows: calc(270px*0.7);
         padding: 0;
         margin: 0;
-        break-inside: avoid;
+        /* break-inside: avoid; */
     }
 
     .graphemes-grid-container > li {
         padding: 0;
     }
+
+    .no-page-break {
+        page-break-inside: avoid;
+        /* page-break-after: always; */
+        /* break-after:page; */
+    }
 }
 
 
-/* firefox whitespace in HTML fix */
+/* firefox whitespace in HTML fixes */
 div {
+    font-size: 0;
+}
+
+button {
     font-size: 0;
 }
