@@ -56,6 +56,8 @@ function colorInput(e) {
     if (inputText.trim() == '') {
         output.html('');
         setTextSize(num);
+        output.css('font-size', '48pt');
+        output.css('padding-top', '80px');
         return;
     }
     while (inputText.includes('\n\n')) {
@@ -98,7 +100,7 @@ function setTextSize(cardNum) {
 
     if (fontSize == 48) {
         // if (boxWidth > 0 && (textWidth > boxWidth || lineBreaks > 0)) {
-        if (boxWidth > 0 && (textWidth > boxWidth)) {
+        if ((boxWidth > 0 && (textWidth > boxWidth)) || output.prop('innerText').includes('\n')) {
             // if there's a line break on the card. > 0 check for uninitialised weirdness
             output.css('padding-top', '60px');
             output.css('font-size', '48pt');
