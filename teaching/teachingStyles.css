@@ -65,7 +65,7 @@ html {
     /* height: 70%; */
     height: max-content;
     padding-top: 80px;
-    overflow-wrap:break-word;
+    overflow-wrap: break-word;
     outline: 0px solid transparent;
     cursor:text;
 }

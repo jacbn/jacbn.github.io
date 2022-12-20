@@ -109,6 +109,8 @@ function setTextSize(cardNum) {
             output.css('font-size', '48pt');
         }
     }
+
+    output.css('padding-bottom', Math.min(100, 200-output.height()));
 }
 
 function splitInput(entryBox, cardIndex) {
