@@ -22,18 +22,19 @@ const phaseColors = {
 
 /*
 WORDS TO FIX BEFORE RELEASE:
+    cat
     brochure
     school
     Q, by itself
 
 TODO:
-    hello\nthere has o and t in p3?
-    deletions need fixing
+    above
+    allow multiple newlines
 */
 
 var textWidth;
 var fontSize = 48;
-const targetHeight = $('#card1').height() - 20 - $('#card1top').height();
+const targetHeight = $('#card1').height() - 40 - $('#card1top').height();
 var lineBreaks = 0;
 
 var cardStrings = [''];
@@ -44,13 +45,13 @@ colorInput(1);
 
 function colorInput(e) {
     var num = (typeof e == "number") ? e : ((e) ? $(e.target).prop('id').substring(6) : 1);
-    
     const output = $('#output' + num);
+
     const htmlEl = document.getElementById("output" + num);
-
     const caretIndex = getCaretIndex(htmlEl);
-
-    // we use a zero-width space to allow newlines to propagate, such that when you press enter it actually shows a new line.
+    
+    // we use a zero-width space (\u200b) to allow newlines to propagate, such that when you press enter it actually shows a new line.
+    // it's a little problematic in other areas (see other comments), but the best of bad options
     var inputText = output.prop('innerText');
     inputText = inputText.replace('\u200b', '');
     if (inputText.trim() == '') {
@@ -87,7 +88,7 @@ function colorInput(e) {
 
 function setTextSize(cardNum) {
     const output = $('#output' + cardNum);
-    var boxWidth = $('#card' + cardNum).width();
+    const boxWidth = $('#card' + cardNum).width();
     fontSize = 48;
     output.css('font-size', '48pt');
     output.css('padding-top', '80px');
@@ -99,9 +100,8 @@ function setTextSize(cardNum) {
     }
 
     if (fontSize == 48) {
-        // if (boxWidth > 0 && (textWidth > boxWidth || lineBreaks > 0)) {
         if ((boxWidth > 0 && (textWidth > boxWidth)) || output.prop('innerText').includes('\n')) {
-            // if there's a line break on the card. > 0 check for uninitialised weirdness
+            // i.e. if there's a line break on the card. > 0 check for uninitialised weirdness
             output.css('padding-top', '60px');
             output.css('font-size', '48pt');
         } else {
@@ -218,7 +218,7 @@ function getCaretIndex(element) {
             range.insertNode(temp); 
             const caretposition = element.innerText.indexOf("\0"); 
             temp.parentNode.removeChild(temp); 
-            return caretposition;          
+            return Math.max(0, caretposition);          
         }
     }    
     
@@ -229,8 +229,14 @@ function setCaretIndex(element, index) {
     var range = document.createRange();
     var selection = window.getSelection();
 
-    range.setStart(element, index);
-    range.collapse(true);
+    try {
+        range.setStart(element, index);
+        range.collapse(true);
+    } catch (e) {
+        range.setStart(element, element.children.length);
+        range.collapse(true);
+    }
+    
     
     selection.removeAllRanges();
     selection.addRange(range);
