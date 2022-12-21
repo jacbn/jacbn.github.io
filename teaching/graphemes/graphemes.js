@@ -22,10 +22,7 @@ const phaseColors = {
 
 /*
 WORDS TO FIX BEFORE RELEASE:
-    cat
     brochure
-    school
-    Q, by itself
 
 TODO:
     above
