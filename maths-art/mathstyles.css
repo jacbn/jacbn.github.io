@@ -100,3 +100,19 @@ html,
     justify-content:space-around;
     margin: 0 20%;
 }
+
+@media screen and (max-width: 1000px) {
+    .widthContainer {
+        display: flex;
+        flex-flow: column;
+    }
+
+    .canvasAndOptions > .flexContainer {
+        max-width: 600px;
+        margin: auto;
+    }
+
+    .canvasAndOptions{
+        order: -1;
+    }
+}

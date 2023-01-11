@@ -50,6 +50,8 @@ function reset() {
     //clear canvas
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgb(21, 24, 26)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 }
 
@@ -146,8 +148,8 @@ function removeCircle() {
     }
 }
 
-function changeRollType(val=rollType) {
-    if (val == rollType) {
+function changeRollType(val=rollType, force=false) {
+    if (!force && val == rollType) {
         rollType = (rollType + 2) % 3 - 1;
     } else {
         rollType = val;
@@ -163,14 +165,14 @@ function setExample(example) {
             circleSpeeds = [8];
             addCircle(80, 0, true)
             addCircle(20, 2);
-            changeRollType(1);
+            changeRollType(1, true);
             break;
         case "triangle":
             circleRadii = [0];
             circleSpeeds = [4];
             addCircle(80, 0, true)
             addCircle(20, -2);
-            changeRollType(1);
+            changeRollType(1, true);
             break;
         case "club":
             circleRadii = [0];
@@ -178,7 +180,7 @@ function setExample(example) {
             addCircle(70, 0, true);
             addCircle(60, -2);
             addCircle(40, 6);
-            changeRollType(0);
+            changeRollType(0, true);
             break;
         case "powersOfTwo":
             circleRadii = [0];
@@ -191,7 +193,7 @@ function setExample(example) {
             addCircle(4, 16);
             addCircle(2, 32);
             addCircle(1, 64);
-            changeRollType(0);
+            changeRollType(0, true);
             break;
     }
     fullReset(baseSpeed, example);

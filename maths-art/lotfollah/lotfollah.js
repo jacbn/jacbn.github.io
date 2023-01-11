@@ -25,6 +25,8 @@ function reset() {
     //clear canvas
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgb(21, 24, 26)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(1, 0, 0, -1, canvas.width/2, canvas.height/2);
 
     //reset "const"s
