@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+    <head>
+        <title>Pythagorean Tree</title>
+        
+        <link rel="stylesheet" href="./../mathstyles.css">
+        <link rel="stylesheet" href="./../../styles.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+
+    <body>
+        <nav class="sticky">
+            <div class="myname transition" href='../../'>
+                Jacob <span style="color:#a0a0a0;">Brown</span>
+            </div>
+            <div>
+                <div href="../../contact.html" class="a-fade transition">Contact</div> 
+                <div href="../../about.html" class="a-fade transition">About Me</div> 
+                <div href="../../" class="a-fade transition">Home</div>
+            </div>
+        </nav>
+        <div class="widthContainer">
+            <div id="description">
+                <div class="centred subtitle">
+                    Pythagorean Tree
+                </div>
+                <div class="pureText">
+                    <h4>What's going on?</h4>
+                    <p>
+                        Here we have a super simple setup; there's a starting circle (say \(C_0\)), and a pointer that rotates around this at a constant speed while drawing a path behind it. The path of the pointer does nothing interesting yet; it just follows the circle. But, we can add a second circle (say \(C_1\)) in place of the pointer, with some non-zero radius, and have the pointer rotate around this circle instead.
+                    </p>
+                    <p>Click the "Add Circle" button to see what happens!</p>
+
+                    <h4 class="h4moreTMargin">Can we change the shapes that are made?</h4>
+                    <p>Sure! The circles' relative radii and rotation speeds both change the shapes produced. In theory, any continuous curve can be produced given enough circles*. There's a number of nice examples in the examples tab, but it's great fun to experiment (make sure to try negative speeds)!
+                    </p>    
+                    <p>*I'm not sure this JS simulation will quite have the precision for works of art, though!</p>
+
+                    <h4 class="h4moreTMargin">What is this, mathematically?</h4>
+                    <p>The shapes made between two circles are called <a href="https://en.wikipedia.org/wiki/Epicycloid">epicycloids</a>, and when there are multiple circles it's called a <i>nested epicycloid</i>.</p>
+                    <br>
+                    <p>Here's a bonus challenge I stumbled over while coding this: how many rotations will each circle do around its parent circle before everything returns to its original position?</p>
+
+                    <details>
+                        <summary>Answer</summary>
+                        Each circle \(i\) will go through \(\big\lvert \frac{speeds_i}{\text{hcf(}speeds\text{)}} \big\rvert\) rotations!
+                        <br>
+                        Isn't it surprising how a seemingly completely unrelated function shows up in a problem like this?
+                    </details>
+                    
+                </div>
+
+            </div>
+            <div class="canvasAndOptions" id="canvasAndOptions">
+                <div>
+                    <canvas class="centred nomargin" id="mainCanvas" width="520" height="520" style="border:1px solid;"></canvas>
+                    <script type="module" src="radials.js"></script>
+                </div>
+
+                <div class="flexContainer">
+                    <div class="vertical cdiv">
+                        <button type="button" id="addCircle" class="radialsButton">Add Circle</button>
+                        <button type="button" id="removeCircle" class="radialsButton">Remove Circle</button>
+                    </div>
+                    <div class="cdiv">
+                        <div class="h4noBMargin">Simulation Speed</div>
+                        <input type="range" min="0" max="30" value="10" class="longSlider" id="speedSlider">
+                    </div>
+                    <div class="vertical cdiv">
+                        <button type="button" id="changeRollType" class="radialsButton">Change Style</button>
+                        <select name="examples" id="examples" class="centred">
+                            <option value="empty" disabled selected hidden>Examples</option>
+                            <option value="3clover">3-Leaf Clover</option>
+                            <option value="triangle">Triangle</option>
+                            <option value="club">Club</option>
+                            <option value="powersOfTwo">Powers of Two</option>
+                        </select>
+                    </div>
+                </div>
+
+                <ul id="circlesOptions" class="cdiv" style="list-style: none; padding: 0">
+                    <li class="radialsListEntry">
+                        <div>Sizes</div>
+                        <div>Speeds</div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript" src="../../fade.js"></script>
+</html>
